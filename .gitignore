@@ -1,9 +1,10 @@
-# Dependencies
-node_modules/
-
-# Next.js
-.next/
-out/
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+.mypy_cache/
 
 # Environment variables
 .env
@@ -21,11 +22,3 @@ Thumbs.db
 # Build output
 dist/
 build/
-
-# Python
-__pycache__/
-*.py[cod]
-*.egg-info/
-.venv/
-venv/
-.mypy_cache/

@@ -6,7 +6,7 @@ Backend AI engineering internship at FlyRank, summer 2026. This repo tracks my w
 
 | Week | Task | Status | Folder |
 |------|------|--------|--------|
-| Week 1 | Learn Next.js fundamentals | In progress | [weeks/week-01-nextjs/](weeks/week-01-nextjs/) |
+| Week 1 | Build your first API endpoint (FastAPI) | In progress | [weeks/week-01-first-api/](weeks/week-01-first-api/) |
 
 ## Related
 
