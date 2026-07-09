@@ -1,18 +1,34 @@
-# FlyRank Internship
+# FlyRank — Backend AI Engineering Internship
 
-Backend AI engineering internship at FlyRank, summer 2026. This repo tracks my weekly learning tasks and internship outputs. All code and notes are my own work.
+[FlyRank](https://www.flyrank.com) is a digital-growth platform that uses AI-powered content engines and smart link strategies to help brands rank and scale organically. I'm joining as a **Backend AI Engineering Intern** for an 8-week, part-time program (6–10 hours/week).
 
-## Weekly Tasks
+## Program Scope
 
-| Week | Task | Status | Folder |
-|------|------|--------|--------|
-| Week 1 | Build your first API endpoint (FastAPI) | In progress | [weeks/week-01-first-api/](weeks/week-01-first-api/) |
+The internship covers four core pillars of production AI engineering:
 
-## Related
+- **API Contracts** — designing and exposing JSON endpoints
+- **Prompting** — crafting effective LLM prompts
+- **Retrieval & Grounding** — connecting models to real data sources
+- **Evaluation & Operations** — measuring quality and running AI systems reliably
+
+## Weekly Progress
+
+| Week | Task | Summary | Status | Link |
+|------|------|---------|--------|------|
+| 1 | BE-01 · First API Endpoint | Build a minimal FastAPI backend with JSON endpoints | ✅ | [week-1/api-endpoint](week-1/api-endpoint/) |
+| 2 | — | — | 🔲 | — |
+| 3 | — | — | 🔲 | — |
+| 4 | — | — | 🔲 | — |
+| 5 | — | — | 🔲 | — |
+| 6 | — | — | 🔲 | — |
+| 7 | — | — | 🔲 | — |
+| 8 | — | — | 🔲 | — |
+
+## Related Repos
 
 - [Anthropic Academy](https://github.com/bilgenurpala/anthropic-academy) — Anthropic Academy certification courses assigned during this internship.
-- [AI Learning Lab](https://github.com/bilgenurpala/ai-learning-lab) — Central hub.
+- [AI Learning Lab](https://github.com/bilgenurpala/ai-learning-lab) — Central hub for all AI learning work.
 
-## Scope note
+## Scope Note
 
 This repo contains only my own learning work. No FlyRank proprietary or client code is stored here.
