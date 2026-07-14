@@ -15,7 +15,7 @@ The internship covers four core pillars of production AI engineering:
 
 | Week | Task | Summary | Status | Link |
 |------|------|---------|--------|------|
-| 1 | BE-01 · First API Endpoint | Build a minimal FastAPI backend with JSON endpoints | ✅ | [api-endpoint](week-1) |
+| 1 | BE-01 · First API Endpoint | Build a minimal FastAPI backend with JSON endpoints | ✅ | [api-endpoint](be-01) |
 | 2 | — | — | 🔲 | — |
 | 3 | — | — | 🔲 | — |
 | 4 | — | — | 🔲 | — |
