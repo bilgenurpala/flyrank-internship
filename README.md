@@ -16,7 +16,7 @@ The internship covers four core pillars of production AI engineering:
 | Week | Task | Summary | Status | Link |
 |------|------|---------|--------|------|
 | 1 | BE-01 · First API Endpoint | Build a minimal FastAPI backend with JSON endpoints | ✅ | [api-endpoint](be-01) |
-| 2 | — | — | 🔲 | — |
+| 2 | BE-04 · Containerize Your Stack | Swap in-memory repo for Postgres in Docker; full stack via docker-compose with persistent volume | ✅ | [containerized-stack](be-04) |
 | 3 | — | — | 🔲 | — |
 | 4 | — | — | 🔲 | — |
 | 5 | — | — | 🔲 | — |
