@@ -32,6 +32,14 @@ def user_to_dict(user):
     }
 
 
+def extract_bearer_token(request: Request):
+    authorization = request.headers.get("Authorization", "")
+    scheme, separator, token = authorization.partition(" ")
+    if scheme.lower() != "bearer" or not separator or not token.strip():
+        return None
+    return token.strip()
+
+
 def create_app(supabase_client=None):
     @asynccontextmanager
     async def lifespan(application: FastAPI):
@@ -83,6 +91,20 @@ def create_app(supabase_client=None):
             "access_token": response.session.access_token,
             "refresh_token": response.session.refresh_token,
         }
+
+    @application.get("/public/info")
+    def public_info():
+        return {"message": "Welcome stranger! This info is public."}
+
+    @application.get("/protected/profile")
+    def protected_profile(request: Request):
+        token = extract_bearer_token(request)
+        if token is None:
+            return JSONResponse(
+                status_code=401,
+                content={"error": "Access token required"},
+            )
+        return {"message": "Access token received"}
 
     return application
 
