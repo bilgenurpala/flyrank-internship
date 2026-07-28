@@ -18,7 +18,7 @@ The internship covers four core pillars of production AI engineering:
 | 1 | BE-01 · First API Endpoint | Build a minimal FastAPI backend with JSON endpoints | ✅ | [api-endpoint](be-01) |
 | 2 | BE-04 · Containerize Your Stack | Swap in-memory repo for Postgres in Docker; full stack via docker-compose with persistent volume | ✅ | [containerized-stack](be-04) |
 | 3 | BE-02 · Connecting Your CRUD to the Database | Replace in-memory task storage with SQLite while preserving the CRUD API contract | ✅ | [database-backed-crud](be-02) |
-| 4 | — | — | 🔲 | — |
+| 4 | BE-03 · Auth - Login & Protect | Add Supabase authentication, verified JWT bearer tokens, reusable route protection, and Swagger security | ✅ | [authenticated-api](be-03) |
 | 5 | — | — | 🔲 | — |
 | 6 | — | — | 🔲 | — |
 | 7 | — | — | 🔲 | — |
