@@ -1,18 +1,31 @@
-# BE-02 - Connecting Your CRUD to the Database
+# BE-02 - Connect CRUD to the Database
 
-A FastAPI task service backed by SQLite. The API keeps the same CRUD contract while moving all storage from process memory to a database file that survives server restarts.
+A FastAPI task service backed by SQLite. It preserves the CRUD API contract while moving state from process memory into a durable database file.
+
+[Back to internship portfolio](../README.md)
+
+## Architecture
+
+```mermaid
+flowchart LR
+    C["Client"] -->|"CRUD requests"| A["FastAPI routes"]
+    A -->|"Parameterized SQL"| S[("SQLite tasks.db")]
+    S -->|"Rows"| A
+    A -->|"JSON + status code"| C
+```
+
+The client does not need to know whether tasks live in memory or SQLite. Persistence is an implementation detail behind the same HTTP interface.
 
 ## Tech Stack
 
 - Python 3.10+
-- FastAPI
-- Uvicorn
-- SQLite through Python's built-in `sqlite3` module
+- FastAPI and Uvicorn
+- Python `sqlite3`
 - Pytest
 
 ## Why SQLite
 
-SQLite was chosen because it stores the complete database in one file, requires no separate database server, and needs no additional Python package. Unlike an in-memory list, it keeps tasks after the API process stops or restarts.
+SQLite stores the entire database in one file, needs no separate server, and ships with Python. Unlike an in-memory list, it preserves tasks after the API process stops or restarts.
 
 ## Project Structure
 
@@ -20,17 +33,17 @@ SQLite was chosen because it stores the complete database in one file, requires 
 be-02/
 ├── database.py
 ├── main.py
-├── requirements.txt
 ├── test_main.py
+├── requirements.txt
 ├── docs/
 │   └── database-view.png
 └── sql/
     └── stage-4.sql
 ```
 
-The database is stored at `be-02/tasks.db`. The file is created automatically when the application starts and is ignored by Git so every clone begins with a fresh local database.
+`tasks.db` is created automatically beside the application and ignored by Git. A clean clone starts with a new local database.
 
-## Setup
+## Setup and Run
 
 ```bash
 cd be-02
@@ -49,25 +62,18 @@ macOS or Linux:
 source .venv/bin/activate
 ```
 
-Install the dependencies:
-
 ```bash
 pip install -r requirements.txt
-```
-
-## Run
-
-```bash
 uvicorn main:app --reload
 ```
 
-The API is available at `http://127.0.0.1:8000` and the interactive documentation is available at `http://127.0.0.1:8000/docs`.
+The API starts at `http://127.0.0.1:8000`; Swagger UI is at `http://127.0.0.1:8000/docs`.
 
-On the first start, the application creates the `tasks` table and inserts exactly three example tasks. The seed transaction runs only when the table is empty, so restarting the server does not duplicate data.
+At first startup the app creates the `tasks` table and inserts three example tasks only when the table is empty.
 
-## API Contract
+## API Reference
 
-| Method | Path | Success | Invalid Body | Unknown ID |
+| Method | Path | Success | Validation | Missing ID |
 |---|---|---:|---:|---:|
 | GET | `/tasks` | 200 | - | - |
 | GET | `/tasks/{id}` | 200 | - | 404 |
@@ -75,61 +81,43 @@ On the first start, the application creates the `tasks` table and inserts exactl
 | PUT | `/tasks/{id}` | 200 | 400 | 404 |
 | DELETE | `/tasks/{id}` | 204 | - | 404 |
 
-Create a task:
+## CRUD Example
 
 ```bash
 curl -i -X POST http://127.0.0.1:8000/tasks \
   -H "Content-Type: application/json" \
   -d "{\"title\":\"Review SQLite queries\"}"
-```
 
-Update a task:
-
-```bash
 curl -i -X PUT http://127.0.0.1:8000/tasks/1 \
   -H "Content-Type: application/json" \
   -d "{\"title\":\"Learn SQLite\",\"done\":true}"
-```
 
-Delete a task:
-
-```bash
 curl -i -X DELETE http://127.0.0.1:8000/tasks/1
 ```
 
-Unknown task IDs return:
+Unknown task IDs return `{"error":"Task not found"}`. Invalid create requests return `{"error":"Title is required"}`.
 
-```json
-{"error":"Task not found"}
-```
+## Persistence and SQL Safety
 
-Invalid create requests return:
+Every CRUD operation uses `?` placeholders and passes values separately. User input is never concatenated into SQL text.
 
-```json
-{"error":"Title is required"}
-```
-
-## Persistence
-
-Every create, read, update, and delete operation uses parameterized SQL queries. Values are passed separately through `?` placeholders instead of being joined into SQL strings.
-
-Persistence can be verified by creating a task, stopping Uvicorn, starting it again, and calling `GET /tasks`. The task remains available because it is stored in `tasks.db` rather than process memory.
+To prove persistence, create a task, restart Uvicorn, and call `GET /tasks`. The task remains available because it lives in `tasks.db` rather than process memory.
 
 ## Database View
 
-![The tasks table in the SQLite database](docs/database-view.png)
+![SQLite tasks table](docs/database-view.png)
 
-The image shows the generated `tasks.db` file, the `tasks` table schema, and the same seed rows returned by the API.
+The screenshot shows the generated schema and the same rows returned by the API.
 
 ## SQL Exploration
 
-The Stage 4 statements are stored in `sql/stage-4.sql`. One query executed manually was:
+Stage 4 queries are saved in [`sql/stage-4.sql`](sql/stage-4.sql). For example:
 
 ```sql
 SELECT * FROM tasks WHERE done = 1;
 ```
 
-It returned only tasks whose `done` value was `1`. After running `UPDATE tasks SET done = 1`, the same completed state appeared immediately through `GET /tasks` because the API and the direct SQL query use the same database file.
+After `UPDATE tasks SET done = 1`, the updated state is visible immediately through `GET /tasks` because direct SQL and the API share one source of truth.
 
 ## Tests
 
@@ -137,6 +125,11 @@ It returned only tasks whose `done` value was `1`. After running `UPDATE tasks S
 pytest -q
 ```
 
-The tests verify one-time seeding, all CRUD endpoints, persistence at the SQLite layer, validation errors, missing-resource errors, and the required HTTP status codes.
+The six tests cover one-time seeding, every CRUD operation, validation, missing resources, status codes, and persistence at the SQLite layer.
 
-Identical endpoint tests passing after the storage change demonstrate that persistence is an implementation detail behind the API contract.
+## What I Learned
+
+- API behavior can remain stable while the storage implementation changes.
+- Database initialization and idempotent seeding make clean-clone setup reliable.
+- Parameter binding is the default defense against SQL injection.
+- Persistence can be demonstrated through both HTTP and direct database inspection.

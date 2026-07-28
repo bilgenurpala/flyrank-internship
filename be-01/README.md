@@ -1,75 +1,92 @@
-# Week 1 — Build Your First API Endpoint (BE-01)
+# BE-01 - Build Your First API Endpoint
 
-A minimal FastAPI backend that exposes three JSON GET endpoints, callable from both `curl` and the browser.
+A minimal FastAPI service that introduces HTTP routing, JSON responses, health checks, and local ASGI development.
+
+[Back to internship portfolio](../README.md)
+
+## Architecture
+
+```mermaid
+flowchart LR
+    C["Browser or curl"] -->|"HTTP GET"| U["Uvicorn ASGI server"]
+    U --> F["FastAPI route handler"]
+    F -->|"JSON response"| C
+```
+
+The entire application lives in one file so the relationship between a request, route decorator, Python function, and JSON response remains easy to inspect.
 
 ## Tech Stack
 
-- **Python 3** + **FastAPI 0.139**
-- **Uvicorn** as the ASGI server
+- Python 3
+- FastAPI 0.139
+- Uvicorn
 
-## Setup & Run
+## Project Structure
+
+```text
+be-01/
+├── README.md
+└── api-endpoint/
+    ├── main.py
+    └── requirements.txt
+```
+
+## Setup
 
 ```bash
-# 1. Create and activate a virtual environment
+cd be-01/api-endpoint
 python -m venv .venv
-# Windows
+```
+
+Windows:
+
+```bash
 .venv\Scripts\activate
-# macOS / Linux
+```
+
+macOS or Linux:
+
+```bash
 source .venv/bin/activate
+```
 
-# 2. Install dependencies
+```bash
 pip install -r requirements.txt
+```
 
-# 3. Start the server
+## Run
+
+```bash
 uvicorn main:app --reload
 ```
 
-The server starts at `http://127.0.0.1:8000`.
+The API starts at `http://127.0.0.1:8000`. Interactive documentation is available at `http://127.0.0.1:8000/docs`.
 
-## Endpoints
+## API Reference
 
-### `GET /`
+| Method | Path | Purpose | Response |
+|---|---|---|---|
+| GET | `/` | Greeting | `{"message":"Hello, from FlyRank!"}` |
+| GET | `/health` | Service health | `{"status":"ok"}` |
+| GET | `/ping` | Liveness check | `{"ping":"pong"}` |
 
-Returns a greeting message.
-
-```bash
-curl http://127.0.0.1:8000/
-```
-
-```json
-{ "message": "Hello, from FlyRank!" }
-```
-
-### `GET /health`
-
-Returns the service health status.
+## Try It
 
 ```bash
-curl http://127.0.0.1:8000/health
+curl -i http://127.0.0.1:8000/
+curl -i http://127.0.0.1:8000/health
+curl -i http://127.0.0.1:8000/ping
 ```
-
-```json
-{ "status": "ok" }
-```
-
-### `GET /ping`
-
-Simple liveness ping.
-
-```bash
-curl http://127.0.0.1:8000/ping
-```
-
-```json
-{ "ping": "pong" }
-```
-
-## How It Works
-
-The entire app lives in a single `main.py` file. It creates a `FastAPI()` application instance and registers three route-handler functions with the `@app.get()` decorator — one for each endpoint. Each handler returns a Python dictionary, which FastAPI automatically serializes to a JSON response. Uvicorn serves the app as an ASGI server and the `--reload` flag enables auto-restart on code changes during development.
 
 ## What I Learned
 
-- **FastAPI turns Python dicts into JSON responses automatically** — no manual serialization needed; the framework handles content-type headers and encoding.
-- **Decorator-based routing (`@app.get`)** maps URL paths to plain Python functions, making it simple to add new endpoints.
-- **Uvicorn's `--reload` flag** watches for file changes and restarts the server, which shortens the edit → test feedback loop during development.
+- FastAPI serializes Python dictionaries into JSON responses automatically.
+- Decorator-based routing maps URL paths to small Python functions.
+- HTTP endpoints are contracts made of a method, path, status code, and response body.
+- Uvicorn's reload mode shortens the local edit-test feedback loop.
+
+## Completion Evidence
+
+- Three endpoints return valid JSON.
+- The service can be called from both a browser and `curl`.
+- Swagger UI discovers all routes automatically.

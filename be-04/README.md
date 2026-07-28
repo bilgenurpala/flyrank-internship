@@ -1,83 +1,123 @@
-# BE-04
+# BE-04 - Containerize Your Stack
 
-A layered FastAPI service (keyword-ranking tracker) whose in-memory repository was swapped for a PostgreSQL repository running in Docker — without touching the service or route layers. The whole stack (API + database) starts with a single `docker compose up`.
+A layered FastAPI keyword-ranking service backed by PostgreSQL and orchestrated with Docker Compose. The storage implementation changes without rewriting the service or HTTP route layers.
 
-## Tech Stack
-
-- **Python 3.12** + **FastAPI** + **Uvicorn**
-- **PostgreSQL 16** (official Docker image) + **psycopg 3**
-- **Docker Compose** for orchestration
+[Back to internship portfolio](../README.md)
 
 ## Architecture
 
+```mermaid
+flowchart LR
+    C["API client"] -->|"HTTP"| R["FastAPI routes"]
+    R --> S["RankingService"]
+    S --> P["PostgresRankingRepository"]
+    P -->|"Parameterized SQL"| DB[("PostgreSQL 16")]
+    V[("Named volume")] --- DB
 ```
-main.py (HTTP routes)  →  service.py (business rules)  →  repository.py (data access)
+
+```mermaid
+flowchart TB
+    DC["docker compose up"] --> APP["app container"]
+    DC --> DB["db container"]
+    DB --> HC["pg_isready health check"]
+    HC --> APP
+    DB --> VOL["flyrank_pgdata volume"]
 ```
 
-- `main.py` — routes, request/response models, HTTP error mapping. Also the composition root: the only place where the concrete repository is chosen.
-- `service.py` — validation and business logic. Receives the repository via constructor injection; never knows which implementation it talks to.
-- `repository.py` — two implementations of the same contract (`add`, `get_all`, `get_by_id`): `InMemoryRankingRepository` (dict-based) and `PostgresRankingRepository` (psycopg 3, parameterized queries).
+## Tech Stack
 
-### Declaration: service and routes did not change
+- Python 3.12
+- FastAPI and Uvicorn
+- PostgreSQL 16
+- psycopg 3
+- Docker and Docker Compose
 
-- The three route handlers, the `RankingIn` model, and the whole of `service.py` are byte-for-byte identical to the in-memory version.
-- The swap changed only the wiring lines at the top of `main.py`: `InMemoryRankingRepository()` → `PostgresRankingRepository(os.environ["DATABASE_URL"])`.
-- This works because both repositories expose the same method signatures and return types (`dict` / `list[dict]` / `None`), and the service depends on that contract, not on a concrete class.
+## Layer Responsibilities
+
+| Layer | File | Responsibility |
+|---|---|---|
+| HTTP | `app/main.py` | Routes, request models, status codes, dependency wiring |
+| Business | `app/service.py` | Validation and ranking rules |
+| Data | `app/repository.py` | Repository contract and PostgreSQL queries |
+| Schema | `db/init.sql` | Automatic database initialization |
+
+The service depends on a repository contract rather than a concrete database. `InMemoryRankingRepository` and `PostgresRankingRepository` expose the same methods and return shapes, so infrastructure can be swapped at the composition root.
 
 ## Project Structure
 
-```
+```text
 be-04/
 ├── app/
-│   ├── main.py            # routes + composition root
-│   ├── service.py         # business logic
-│   └── repository.py      # in-memory + Postgres repositories
+│   ├── main.py
+│   ├── service.py
+│   └── repository.py
 ├── db/
-│   └── init.sql           # schema, auto-applied on first DB startup
-├── Dockerfile             # builds the API image
-├── docker-compose.yml     # app + db, healthcheck, named volume
-├── .env.example           # template for the connection string
+│   └── init.sql
+├── Dockerfile
+├── docker-compose.yml
+├── .env.example
 └── requirements.txt
 ```
 
-## Setup & Run
-
-### Full stack with Docker Compose (recommended)
+## Run the Full Stack
 
 ```bash
+cd be-04
 docker compose up --build
 ```
 
-- Starts `db` (Postgres 16) and `app` (FastAPI) together.
-- `db/init.sql` is mounted into `docker-entrypoint-initdb.d`, so the schema is created automatically the first time the database initializes.
-- The app waits for the database healthcheck (`pg_isready`) before starting.
-- Inside the compose network the app reaches the database at hostname `db`, not `localhost`.
+The API is available at `http://localhost:8000`; Swagger UI is at `http://localhost:8000/docs`.
 
-API docs: `http://localhost:8000/docs`
+Compose starts both services, waits for PostgreSQL's health check, applies `db/init.sql` during first initialization, and connects the application to database hostname `db` inside the Compose network.
 
-### Local run (app outside Docker)
+## Configuration
 
-```bash
-cp .env.example .env   # fill in real values
-pip install -r requirements.txt
-docker run --name flyrank-db -e POSTGRES_USER=... -e POSTGRES_PASSWORD=... -e POSTGRES_DB=... -p 5432:5432 -v flyrank_pgdata:/var/lib/postgresql/data -d postgres:16
-uvicorn app.main:app --reload
+Copy `.env.example` to `.env` when running outside the provided Compose defaults. `.env` remains ignored by Git.
+
+```env
+DATABASE_URL=postgresql://flyrank:flyrank_dev@localhost:5432/flyrank
 ```
 
-`.env` is gitignored; only `.env.example` is committed.
+The Compose-managed app uses hostname `db` internally; a locally running app connects through the published host port at `localhost`.
 
-## Endpoints
+## API Reference
 
-| Method | Path | Description |
-|--------|------|-------------|
-| POST | `/rankings` | Track a keyword ranking (422 on invalid input) |
-| GET | `/rankings` | List all rankings |
-| GET | `/rankings/{id}` | Get one ranking (404 if missing) |
+| Method | Path | Purpose | Success | Errors |
+|---|---|---|---:|---:|
+| POST | `/rankings` | Track a keyword position | 201 | 422 |
+| GET | `/rankings` | List tracked rankings | 200 | - |
+| GET | `/rankings/{id}` | Read one ranking | 200 | 404 |
+
+## Example
+
+```bash
+curl -i -X POST http://localhost:8000/rankings \
+  -H "Content-Type: application/json" \
+  -d "{\"keyword\":\"fastapi hosting\",\"position\":3,\"url\":\"https://example.com\"}"
+
+curl -i http://localhost:8000/rankings
+```
 
 ## Persistence Proof
 
-1. With the stack running, rows were added via `POST /rankings` and verified via `GET /rankings`.
-2. `docker compose down` — containers were **deleted**, not just stopped.
-3. `docker compose up` recreated the containers from scratch.
-4. `GET /rankings` returned the same rows: Postgres writes its data to the named volume `flyrank_pgdata`, which lives independently of container lifecycle.
-5. Counter-experiment: with the in-memory repository, restarting Uvicorn wiped all data (a dict lives in process RAM).
+1. Create ranking rows through `POST /rankings`.
+2. Confirm them with `GET /rankings`.
+3. Run `docker compose down` to delete the containers.
+4. Run `docker compose up` to recreate them.
+5. Confirm that the rows remain available.
+
+The `flyrank_pgdata` named volume exists independently of container lifecycle. Containers are replaceable compute; the volume is durable state.
+
+## Design Evidence
+
+- SQL values are parameterized with psycopg placeholders.
+- Database connections use context managers and commit or roll back predictably.
+- The application waits for a healthy database before startup.
+- Only the composition root selects the concrete repository.
+
+## What I Learned
+
+- Service layers become easier to test when they depend on contracts instead of infrastructure.
+- Docker Compose provides repeatable service discovery, startup ordering, and persistent volumes.
+- A container can be deleted safely when durable state lives outside its writable layer.
+- PostgreSQL can replace memory storage without changing client-facing routes.
