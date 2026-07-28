@@ -104,7 +104,14 @@ def create_app(supabase_client=None):
                 status_code=401,
                 content={"error": "Access token required"},
             )
-        return {"message": "Access token received"}
+        try:
+            response = request.app.state.supabase.auth.get_user(token)
+        except AuthApiError:
+            return JSONResponse(
+                status_code=401,
+                content={"error": "Invalid or expired token"},
+            )
+        return {"user": user_to_dict(response.user)}
 
     return application
 
