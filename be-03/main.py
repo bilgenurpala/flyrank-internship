@@ -2,10 +2,17 @@ from contextlib import asynccontextmanager
 
 from fastapi import Depends, FastAPI, Request, Response
 from fastapi.responses import JSONResponse
+from fastapi.security import HTTPAuthorizationCredentials, HTTPBearer
 from supabase import AuthApiError
 
 from config import load_settings
 from supabase_client import build_supabase_client
+
+bearer_scheme = HTTPBearer(
+    bearerFormat="JWT",
+    description="Supabase access token",
+    auto_error=False,
+)
 
 
 class AuthenticationError(Exception):
@@ -37,18 +44,13 @@ def user_to_dict(user):
     }
 
 
-def extract_bearer_token(request: Request):
-    authorization = request.headers.get("Authorization", "")
-    scheme, separator, token = authorization.partition(" ")
-    if scheme.lower() != "bearer" or not separator or not token.strip():
-        return None
-    return token.strip()
-
-
-def get_current_user(request: Request):
-    token = extract_bearer_token(request)
-    if token is None:
+def get_current_user(
+    request: Request,
+    credentials: HTTPAuthorizationCredentials | None = Depends(bearer_scheme),
+):
+    if credentials is None or not credentials.credentials.strip():
         raise AuthenticationError("Access token required")
+    token = credentials.credentials.strip()
     try:
         response = request.app.state.supabase.auth.get_user(token)
     except AuthApiError as error:
