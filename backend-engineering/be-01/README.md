@@ -2,7 +2,7 @@
 
 A minimal FastAPI service that introduces HTTP routing, JSON responses, health checks, and local ASGI development.
 
-[Back to internship portfolio](../README.md)
+[Back to internship portfolio](../../README.md)
 
 ## Architecture
 
@@ -34,7 +34,7 @@ be-01/
 ## Setup
 
 ```bash
-cd be-01/api-endpoint
+cd backend-engineering/be-01/api-endpoint
 python -m venv .venv
 ```
 

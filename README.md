@@ -10,10 +10,10 @@ An evolving portfolio of backend engineering assignments completed during my par
 
 | Project | Focus | Core Technologies | Evidence |
 |---|---|---|---|
-| [BE-01 - First API Endpoint](be-01) | HTTP and API fundamentals | Python, FastAPI, Uvicorn | Three working JSON endpoints |
-| [BE-02 - Database-Backed CRUD](be-02) | Persistence and SQL | FastAPI, SQLite, Pytest | Full CRUD, restart persistence, database view |
-| [BE-03 - Auth: Login and Protect](be-03) | Authentication and route security | Supabase Auth, JWT, HTTPBearer | Protected routes, 10 tests, Swagger locks |
-| [BE-04 - Containerized Stack](be-04) | Architecture and infrastructure | PostgreSQL, Docker Compose, psycopg | Layered service and persistent named volume |
+| [BE-01 - First API Endpoint](backend-engineering/be-01) | HTTP and API fundamentals | Python, FastAPI, Uvicorn | Three working JSON endpoints |
+| [BE-02 - Database-Backed CRUD](backend-engineering/be-02) | Persistence and SQL | FastAPI, SQLite, Pytest | Full CRUD, restart persistence, database view |
+| [BE-03 - Auth: Login and Protect](backend-engineering/be-03) | Authentication and route security | Supabase Auth, JWT, HTTPBearer | Protected routes, 10 tests, Swagger locks |
+| [BE-04 - Containerized Stack](backend-engineering/be-04) | Architecture and infrastructure | PostgreSQL, Docker Compose, psycopg | Layered service and persistent named volume |
 
 ## Engineering Progression
 
@@ -41,11 +41,13 @@ Each project adds one production-oriented backend concern while keeping API cont
 
 ```text
 flyrank-internship/
-├── be-01/    First FastAPI endpoints
-├── be-02/    SQLite-backed task CRUD API
-├── be-03/    Supabase authentication and protected routes
-├── be-04/    PostgreSQL service orchestrated with Docker Compose
-└── assets/   Portfolio visuals
+├── backend-engineering/
+│   ├── be-01/    First FastAPI endpoints
+│   ├── be-02/    SQLite-backed task CRUD API
+│   ├── be-03/    Supabase authentication and protected routes
+│   └── be-04/    PostgreSQL service orchestrated with Docker Compose
+├── ai-fluency/   AI Fluency assignments organized as fl-XX
+└── assets/       Portfolio visuals
 ```
 
 Every project is self-contained and has its own README with architecture, setup instructions, API reference, verification steps, and learning outcomes.
@@ -62,10 +64,10 @@ Every project is self-contained and has its own README with architecture, setup 
 
 | Week | Assignment | Status |
 |---:|---|:---:|
-| 1 | [BE-01 - Build Your First API Endpoint](be-01) | Complete |
-| 2 | [BE-04 - Containerize Your Stack](be-04) | Complete |
-| 3 | [BE-02 - Connect CRUD to the Database](be-02) | Complete |
-| 4 | [BE-03 - Auth: Login and Protect](be-03) | Complete |
+| 1 | [BE-01 - Build Your First API Endpoint](backend-engineering/be-01) | Complete |
+| 2 | [BE-04 - Containerize Your Stack](backend-engineering/be-04) | Complete |
+| 3 | [BE-02 - Connect CRUD to the Database](backend-engineering/be-02) | Complete |
+| 4 | [BE-03 - Auth: Login and Protect](backend-engineering/be-03) | Complete |
 | 5 | Upcoming assignment | Planned |
 | 6 | Upcoming assignment | Planned |
 | 7 | Upcoming assignment | Planned |

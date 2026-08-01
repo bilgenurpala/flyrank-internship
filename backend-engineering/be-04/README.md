@@ -2,7 +2,7 @@
 
 A layered FastAPI keyword-ranking service backed by PostgreSQL and orchestrated with Docker Compose. The storage implementation changes without rewriting the service or HTTP route layers.
 
-[Back to internship portfolio](../README.md)
+[Back to internship portfolio](../../README.md)
 
 ## Architecture
 
@@ -62,7 +62,7 @@ be-04/
 ## Run the Full Stack
 
 ```bash
-cd be-04
+cd backend-engineering/be-04
 docker compose up --build
 ```
 

@@ -2,7 +2,7 @@
 
 A FastAPI task service backed by SQLite. It preserves the CRUD API contract while moving state from process memory into a durable database file.
 
-[Back to internship portfolio](../README.md)
+[Back to internship portfolio](../../README.md)
 
 ## Architecture
 
@@ -46,7 +46,7 @@ be-02/
 ## Setup and Run
 
 ```bash
-cd be-02
+cd backend-engineering/be-02
 python -m venv .venv
 ```
 

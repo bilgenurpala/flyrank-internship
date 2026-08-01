@@ -2,7 +2,7 @@
 
 A FastAPI service that delegates account security to Supabase Auth, returns JWT access tokens after login, verifies bearer tokens, and protects selected routes with a reusable dependency.
 
-[Back to internship portfolio](../README.md)
+[Back to internship portfolio](../../README.md)
 
 ## Authentication Flow
 
@@ -70,7 +70,7 @@ PORT=8000
 ## Setup and Run
 
 ```bash
-cd be-03
+cd backend-engineering/be-03
 python -m venv .venv
 ```
 
