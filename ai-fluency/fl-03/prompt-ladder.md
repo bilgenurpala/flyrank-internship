@@ -386,25 +386,23 @@ Fix order: 1) SQL injection  2) Input validation  3) Error handling
 
 ## Cross-model comparison (final prompt V5: Claude vs ChatGPT)
 
-> ⚠️ NOT YET RUN. The six runs above are real **Claude (Opus)** outputs. I could not run ChatGPT from here, and I will not fabricate its output — a made-up comparison is exactly the kind of unverifiable evidence the program rejects. **This section is yours to complete:** paste the exact V5 prompt + fixed input into ChatGPT, drop its output below, then answer the specific questions. (Or ask me to drive your logged-in ChatGPT in the browser and I'll run it live with you.)
+**Models:** Claude (Opus) vs ChatGPT (GPT-5.6, run via Codex). Same V5 prompt + fixed input. ChatGPT's full raw output is preserved at `outputs/chatgpt-v5-output.md`.
 
-Force specificity — answer these, don't vibe-check:
-- Which model found **more** of the 7 answer-key issues? Which did each **miss**?
-- Did they **disagree on severity** for any issue?
-- Did either **hallucinate** a problem that isn't in the code?
-- Which followed the **5-step structure** more faithfully?
-- Which corrected fix would you actually **paste into your repo**, and why?
+**Coverage of the 7 answer-key issues — TIE.** Both caught all seven (injection, no parameterization, unclosed connection, 404-on-missing, query-params-vs-body / no Pydantic, error handling, raw `done` validation). Neither missed an answer-key item, so raw discovery didn't separate them.
+
+**Breadth — ChatGPT much wider, and it cuts both ways.** ChatGPT went well beyond the snippet: broken authorization / ownership (IDOR), anonymous-write rate limiting and abuse, enumerable sequential IDs, `SELECT *` instability, `201 Created` vs `200`, returning the created id, relative `tasks.db` path, SQLite write-concurrency (busy timeout / WAL), and migrations — ~23 table rows. Claude stayed scoped to the code shown: 7 combined rows plus 2 extras (transaction/rollback, duplicated DB setup). The real distinction: ChatGPT optimizes for an exhaustive audit, Claude for signal you can act on now. Several ChatGPT extras are genuinely worth having (authz, 201, `SELECT *`, transactions); a few (WAL/busy-timeout, quotas, migrations) assume deployment facts the snippet doesn't show — not wrong, but scope-creep for "review this snippet."
+
+**Severity disagreement — the unclosed connection.** Claude rated "connection never closed" **Medium**; ChatGPT rated it **High**. ChatGPT also split SQL injection into two Critical rows (one per endpoint) where Claude used one combined Critical. On the top Criticals they agree.
+
+**Hallucination — neither.** No invented bugs on either side. ChatGPT's conditional hedges ("High *if* tasks are private") are honest scoping, not false positives.
+
+**Structure faithfulness — both followed all 5 steps; ChatGPT was more literal/exhaustive** (13 correctness items, 8 maintainability items) while Claude was more compact. Both produced the Step 5 table + fix order. ChatGPT's 23-row table is thorough but needs triage; Claude's 7-row table is scannable in seconds.
+
+**Which would I paste into the repo?** ← YOUR CALL (you're the decision-maker). My read: for actually fixing *this* snippet as a junior, Claude's ranked 7-row table + fix order is more directly actionable. ChatGPT's output is the better *learning / audit* document — it teaches things the snippet didn't force (IDOR, 201, WAL) — but you'd have to decide which of its 23 rows apply to your context. A defensible answer: "act from Claude's list, keep ChatGPT's as an audit checklist." Edit this line to whatever you actually conclude.
 
 ```
-CHATGPT V5 OUTPUT ↓ (paste)
-
-
-```
-
-```
-CLAUDE vs CHATGPT — specific differences ↓ (write)
-
-
+CHATGPT V5 (GPT-5.6 / Codex) — full raw output preserved at:
+ai-fluency/fl-03/outputs/chatgpt-v5-output.md
 ```
 
 ---
