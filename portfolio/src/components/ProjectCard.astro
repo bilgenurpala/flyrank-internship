@@ -1,0 +1,21 @@
+---
+interface Props {
+  eyebrow: string;
+  title: string;
+  description: string;
+  href: string;
+  status?: string;
+}
+
+const { eyebrow, title, description, href, status } = Astro.props;
+---
+
+<article class="project-card">
+  <div class="card-meta">
+    <p class="eyebrow">{eyebrow}</p>
+    {status && <span class="status-chip">{status}</span>}
+  </div>
+  <h3>{title}</h3>
+  <p>{description}</p>
+  <a class="inline-link" href={href}>Read the case <span aria-hidden="true">→</span></a>
+</article>

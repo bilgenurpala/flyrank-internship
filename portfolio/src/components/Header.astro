@@ -1,0 +1,29 @@
+---
+const pathname = Astro.url.pathname;
+const links = [
+  { href: "/", label: "Home" },
+  { href: "/work", label: "Work" },
+  { href: "/about", label: "About" },
+  { href: "/contact", label: "Contact" }
+];
+---
+
+<header class="site-header">
+  <div class="shell header-inner">
+    <a class="brand" href="/" aria-label="Bilgenur Pala, home">
+      <img src="/assets/logo.svg" width="40" height="40" alt="" />
+      <span>Bilgenur Pala</span>
+    </a>
+    <nav aria-label="Primary navigation">
+      <ul class="nav-list">
+        {links.map((link) => (
+          <li>
+            <a href={link.href} aria-current={pathname === link.href || (link.href !== "/" && pathname.startsWith(link.href)) ? "page" : undefined}>
+              {link.label}
+            </a>
+          </li>
+        ))}
+      </ul>
+    </nav>
+  </div>
+</header>

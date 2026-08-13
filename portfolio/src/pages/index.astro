@@ -1,0 +1,75 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import ProjectCard from "../components/ProjectCard.astro";
+import SystemFlow from "../components/SystemFlow.astro";
+import AnimatedPortrait from "../components/AnimatedPortrait.astro";
+---
+
+<BaseLayout title="Bilgenur Pala — Backend AI Engineering" description="Portfolio of Bilgenur Pala, a Backend AI Engineering intern building grounded AI systems with real tools and data.">
+  <section class="hero shell section-space">
+    <div class="hero-content" data-reveal="hero">
+      <p class="eyebrow">Backend AI Engineering Intern</p>
+      <h1>I build AI agents that run real tools, test their own work, and know when to ask a human.</h1>
+      <p class="hero-copy">Not chat wrappers — systems grounded in application data, explicit checks, and approval boundaries.</p>
+      <div class="action-row">
+        <a class="button button-primary" href="/contact">Book a conversation</a>
+        <a class="button button-secondary" href="#selected-work">See the work</a>
+      </div>
+    </div>
+    <div class="hero-visual" data-reveal="hero-visual">
+      <AnimatedPortrait />
+    </div>
+  </section>
+
+  <section class="system-feature shell" data-reveal>
+    <div class="system-feature-copy">
+      <p class="eyebrow">How the system moves</p>
+      <h2>From a real request to a verified outcome.</h2>
+      <p>The model can act, but every step stays grounded, testable, and inside a visible approval boundary.</p>
+    </div>
+    <SystemFlow />
+  </section>
+
+  <section class="proof-band" aria-label="Selected evidence" data-reveal>
+    <div class="shell proof-grid">
+      <p><strong>Real tools</strong><span>GitHub, databases, tests, and local models</span></p>
+      <p><strong>Grounded outputs</strong><span>Application records instead of invented answers</span></p>
+      <p><strong>Honest evaluation</strong><span>Failures and limitations stay visible</span></p>
+    </div>
+  </section>
+
+  <section id="selected-work" class="shell section-space" data-reveal>
+    <div class="section-heading">
+      <div>
+        <p class="eyebrow">Selected work</p>
+        <h2>Evidence before claims.</h2>
+      </div>
+      <a class="inline-link" href="/work">View all work <span aria-hidden="true">→</span></a>
+    </div>
+    <div class="featured-case" data-reveal>
+      <div>
+        <div class="card-meta">
+          <p class="eyebrow">Featured case</p>
+          <span class="status-chip">In development</span>
+        </div>
+        <h2>SafeBump</h2>
+        <p>A dependency-upgrade agent designed to open a branch, change one package, run the project's checks, and keep or roll back the result. The case will be replaced with real run evidence after the build.</p>
+        <a class="inline-link" href="/work#safebump">See the planned decision loop <span aria-hidden="true">→</span></a>
+      </div>
+      <div class="decision-loop" aria-label="SafeBump planned decision loop">
+        <span>Inspect</span><span>Change</span><span>Test</span><span>Decide</span><span>Ask</span>
+      </div>
+    </div>
+    <div class="card-grid" data-reveal>
+      <ProjectCard eyebrow="Grounded AI" title="PetAdopt" description="A FastAPI service where the model interprets the request and PostgreSQL determines which animals actually exist." href="/work#petadopt" />
+      <ProjectCard eyebrow="Local RAG" title="Foundry Local RAG Assistant" description="A fully local retrieval assistant evaluated on ten fixed questions, with eight correct answers and two recorded failures." href="/work#rag" />
+    </div>
+  </section>
+
+  <section class="shell closing-panel" data-reveal>
+    <p class="eyebrow">How I work</p>
+    <h2>AI is a collaborator, not a substitute for ownership.</h2>
+    <p>I use it to pressure-test decisions and expose gaps. I keep the implementation, verification, and final claims accountable to evidence I can explain.</p>
+    <a class="inline-link" href="/about">More about how I work <span aria-hidden="true">→</span></a>
+  </section>
+</BaseLayout>

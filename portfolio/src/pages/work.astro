@@ -1,0 +1,61 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+---
+
+<BaseLayout title="Work — Bilgenur Pala" description="Backend AI engineering case studies by Bilgenur Pala.">
+  <section class="page-intro shell section-space">
+    <p class="eyebrow">Work</p>
+    <h1>Systems that act on real data, with evidence attached.</h1>
+    <p>These cases are ordered by how directly they support that claim, not by date or technology count.</p>
+  </section>
+
+  <div class="shell case-stack">
+    <article id="safebump" class="case-study case-featured">
+      <div class="case-head">
+        <div><p class="eyebrow">01 · Agent engineering</p><h2>SafeBump</h2></div>
+        <span class="status-chip">Build starts 15 August</span>
+      </div>
+      <p class="case-lead">A dependency-upgrade agent with a narrow job: change one dependency at a time, test the result, and keep or roll back the change.</p>
+      <div class="three-beats">
+        <section><h3>The problem</h3><p>Dependency updates are easy to postpone because a small version change can quietly break a project. The difficult part is not running the update; it is deciding what evidence is enough to keep it.</p></section>
+        <section><h3>The planned decision</h3><p>SafeBump will work on a branch, run pytest and pip check, record its evidence, and stop for human approval before any push. Major versions will never be automatic.</p></section>
+        <section><h3>Current result</h3><p>No result is claimed yet. This section is a reserved case slot and will receive the real eval outcomes, build log, report, repository, and demo after the agent runs.</p></section>
+      </div>
+    </article>
+
+    <article id="petadopt" class="case-study">
+      <div class="case-head"><div><p class="eyebrow">02 · Grounded AI</p><h2>PetAdopt</h2></div></div>
+      <p class="case-lead">A FastAPI backend and separate AI service that turn a natural-language adoption conversation into matches against real PostgreSQL records.</p>
+      <div class="evidence-layout">
+        <div class="three-beats">
+          <section><h3>The problem</h3><p>Filter forms cannot capture how someone describes their home, routine, or limits. A language model can interpret that context, but it must not invent an animal that is not available.</p></section>
+          <section><h3>What I decided</h3><p>The model interprets the request; the database decides what exists. I kept the AI service separate from the core API and used JWT authentication, RFC 7807 errors, OpenAPI 3.1, and Docker Compose.</p></section>
+          <section><h3>What came of it</h3><p>The boundary makes incorrect recommendations debuggable: I can inspect whether the model misunderstood the request or the query returned the wrong records. Match quality was checked manually, so I make no scale claim.</p></section>
+        </div>
+        <a class="repository-link" href="https://github.com/bilgenurpala" target="_blank" rel="noreferrer">View repositories <span aria-hidden="true">↗</span></a>
+      </div>
+    </article>
+
+    <article id="rag" class="case-study">
+      <div class="case-head"><div><p class="eyebrow">03 · Local retrieval</p><h2>Foundry Local RAG Assistant</h2></div><strong class="metric">8/10</strong></div>
+      <p class="case-lead">A retrieval assistant that runs locally without a hosted model, API key, or outbound request.</p>
+      <div class="three-beats">
+        <section><h3>The problem</h3><p>Hosted RAG is not suitable when source material cannot leave the machine or the API budget is zero.</p></section>
+        <section><h3>What I decided</h3><p>I built on Microsoft Foundry Local and evaluated the assistant with ten fixed questions instead of relying on a polished demonstration.</p></section>
+        <section><h3>What came of it</h3><p>Eight answers were correct and two failed. The failures pointed to retrieval quality as the binding constraint in that test.</p></section>
+      </div>
+    </article>
+
+    <article class="case-study">
+      <div class="case-head"><div><p class="eyebrow">04 · Backend foundations</p><h2>Four assignments, one progression</h2></div></div>
+      <p class="case-lead">The backend foundation an agent needs before it can act safely: HTTP contracts, persistence, authentication, and reproducible infrastructure.</p>
+      <div class="progression-grid">
+        <p><strong>BE-01</strong><span>FastAPI endpoints and explicit JSON contracts</span></p>
+        <p><strong>BE-02</strong><span>SQLite CRUD, persistence, and six tests</span></p>
+        <p><strong>BE-03</strong><span>Supabase Auth, verified JWTs, and protected routes</span></p>
+        <p><strong>BE-04</strong><span>PostgreSQL, Docker Compose, and layered architecture</span></p>
+      </div>
+      <a class="repository-link" href="https://github.com/bilgenurpala/flyrank-internship" target="_blank" rel="noreferrer">Open the internship repository <span aria-hidden="true">↗</span></a>
+    </article>
+  </div>
+</BaseLayout>

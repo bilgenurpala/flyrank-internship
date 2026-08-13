@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512" role="img" aria-label="BP monogram">
+  <rect width="512" height="512" rx="112" fill="#14524A"/>
+  <g fill="none" stroke="#FAFAF8" stroke-width="36" stroke-linecap="butt">
+    <path d="M116,138 V374"/>
+    <path d="M98,156 H168 A50,50 0 0 1 168,256 H98"/>
+    <path d="M98,256 H176 A50,50 0 0 1 176,356 H98"/>
+    <path d="M288,138 V374"/>
+    <path d="M270,156 H340 A56,56 0 0 1 340,268 H270"/>
+  </g>
+</svg>
