@@ -1,5 +1,11 @@
 # Dev Log
 
+2026-08-13
+- Built and ran a no-code, source-grounded study-note workflow across five real technical questions using NotebookLM and a Claude Project.
+- The repeated failure was citation loss during copy/export; I also learned that a same-model critique can catch overstatement but cannot replace source verification.
+- I approved each final note through a comprehension check and recorded the incomplete timing honestly instead of presenting model execution as end-to-end savings.
+- Tomorrow: classify the pipeline as a workflow rather than an agent during Agent Concepts and MCP Basics, then begin Design Your Personal Agent.
+
 | Date | What I did | AI-free work |
 |------|------------|--------------|
 | 2026-08-07 | Closed AI Fluency Week 1: locked the sitemap (Home → Work → About → Contact), set up the Claude Project workspace, prepped FL-01/FL-02/Draw the Path for submission. Found the proof statement read like a generic tagline and reworked it to name what I can actually prove. Real FL-01 blocker is the Anthropic Academy "Framework & Foundations" module, not screenshots. | I wrote the proof-statement rewrite and made the submit/no-submit calls myself; AI reviewed and pointed at the weak spots. |
