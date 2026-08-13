@@ -1,10 +1,11 @@
 # Dev Log
 
 2026-08-13
-- Built and ran a no-code, source-grounded study-note workflow across five real technical questions using NotebookLM and a Claude Project.
-- The repeated failure was citation loss during copy/export; I also learned that a same-model critique can catch overstatement but cannot replace source verification.
-- I approved each final note through a comprehension check and recorded the incomplete timing honestly instead of presenting model execution as end-to-end savings.
-- Tomorrow: classify the pipeline as a workflow rather than an agent during Agent Concepts and MCP Basics, then begin Design Your Personal Agent.
+- Completed the no-code study-note workflow and classified it as a manually orchestrated workflow rather than an agent.
+- Connected GitHub, documented three live tool calls, and proposed a bounded revision-loop agent upgrade with human review preserved.
+- Pressure-tested three portfolio stacks, chose Astro with Netlify, deployed the four-page site, and verified the public URL on a phone.
+- Learned that tool access is not agency and that a professional static portfolio still does not need a backend; no matching GitHub issue existed for Agent Concepts and MCP Basics.
+- Tomorrow: continue the same deployed project with Ship the Ugly One and replace placeholders only with evidence I can defend.
 
 | Date | What I did | AI-free work |
 |------|------------|--------------|
