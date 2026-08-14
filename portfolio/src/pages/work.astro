@@ -13,40 +13,54 @@ import BaseLayout from "../layouts/BaseLayout.astro";
     <article id="safebump" class="case-study case-featured">
       <div class="case-head">
         <div><p class="eyebrow">01 · Agent engineering</p><h2>SafeBump</h2></div>
-        <span class="status-chip">Build starts 15 August</span>
+        <span class="status-chip">In progress · starts 15 August</span>
       </div>
-      <p class="case-lead">A dependency-upgrade agent with a narrow job: change one dependency at a time, test the result, and keep or roll back the change.</p>
+      <p class="case-lead">A dependency-upgrade agent with a narrow planned job: change one dependency at a time, test the result, and keep or roll back the change.</p>
       <div class="three-beats">
-        <section><h3>The problem</h3><p>Dependency updates are easy to postpone because a small version change can quietly break a project. The difficult part is not running the update; it is deciding what evidence is enough to keep it.</p></section>
+        <section><h3>The problem</h3><p>Dependency updates are easy to postpone because a small version change can quietly break a project. The difficult part is deciding what evidence is enough to keep it.</p></section>
         <section><h3>The planned decision</h3><p>SafeBump will work on a branch, run pytest and pip check, record its evidence, and stop for human approval before any push. Major versions will never be automatic.</p></section>
-        <section><h3>Current result</h3><p>No result is claimed yet. This section is a reserved case slot and will receive the real eval outcomes, build log, report, repository, and demo after the agent runs.</p></section>
+        <section><h3>Current result</h3><p>No result is claimed. The build, evaluation, repository, report, and demo will replace this reserved space only after real runs exist.</p></section>
       </div>
+      <div class="evidence-note"><strong>Evidence status</strong><span>Planned architecture only. No run evidence exists yet.</span></div>
     </article>
 
     <article id="petadopt" class="case-study">
       <div class="case-head"><div><p class="eyebrow">02 · Grounded AI</p><h2>PetAdopt</h2></div></div>
       <p class="case-lead">A FastAPI backend and separate AI service that turn a natural-language adoption conversation into matches against real PostgreSQL records.</p>
-      <div class="evidence-layout">
-        <div class="three-beats">
-          <section><h3>The problem</h3><p>Filter forms cannot capture how someone describes their home, routine, or limits. A language model can interpret that context, but it must not invent an animal that is not available.</p></section>
-          <section><h3>What I decided</h3><p>The model interprets the request; the database decides what exists. I kept the AI service separate from the core API and used JWT authentication, RFC 7807 errors, OpenAPI 3.1, and Docker Compose.</p></section>
-          <section><h3>What came of it</h3><p>The boundary makes incorrect recommendations debuggable: I can inspect whether the model misunderstood the request or the query returned the wrong records. Match quality was checked manually, so I make no scale claim.</p></section>
-        </div>
-        <a class="repository-link" href="https://github.com/bilgenurpala" target="_blank" rel="noreferrer">View repositories <span aria-hidden="true">↗</span></a>
+      <figure class="case-hero-media">
+        <img src="/assets/projects/petadopt-home.jpeg" alt="PetAdopt application showing searchable pet records" width="1280" height="703" loading="lazy" />
+        <figcaption>The application displays pet records returned by the backend rather than model-invented options.</figcaption>
+      </figure>
+      <div class="three-beats">
+        <section><h3>The problem</h3><p>Filter forms cannot capture how someone describes their home, routine, or limits. A language model can interpret that context, but it must not invent an animal that is not available.</p></section>
+        <section><h3>What I decided</h3><p>The model interprets the request; the database decides what exists. I kept the AI service separate from the core API and used JWT authentication, RFC 7807 errors, OpenAPI 3.1, and Docker Compose.</p></section>
+        <section><h3>What came of it</h3><p>The API QA run recorded 30 requests, 51 assertions, and 0 failures. Recommendation quality was checked manually, so I do not claim a measured matching-accuracy result.</p></section>
       </div>
+      <div class="case-gallery" aria-label="PetAdopt evidence">
+        <figure><img src="/assets/projects/petadopt-ai-assistant.jpeg" alt="PetAdopt AI assistant matching a user's apartment needs to database records" width="1280" height="706" loading="lazy" /><figcaption>Natural-language request and grounded recommendations.</figcaption></figure>
+        <figure><img src="/assets/projects/petadopt-newman-report.png" alt="Newman report showing 30 requests, 51 assertions, and no failed tests" width="975" height="1451" loading="lazy" /><figcaption>API evidence: 30 requests, 51 assertions, 0 failures.</figcaption></figure>
+        <figure><img src="/assets/projects/petadopt-api-docs.png" alt="PetAdopt OpenAPI documentation showing authenticated endpoints" width="1019" height="2048" loading="lazy" /><figcaption>OpenAPI 3.1 contract and protected routes.</figcaption></figure>
+      </div>
+      <a class="repository-link" href="https://github.com/bilgenurpala/pet-adopt" target="_blank" rel="noreferrer">Open the PetAdopt repository <span aria-hidden="true">↗</span></a>
     </article>
 
     <article id="rag" class="case-study">
-      <div class="case-head"><div><p class="eyebrow">03 · Local retrieval</p><h2>Foundry Local RAG Assistant</h2></div><strong class="metric">8/10</strong></div>
-      <p class="case-lead">A retrieval assistant that runs locally without a hosted model, API key, or outbound request.</p>
+      <div class="case-head"><div><p class="eyebrow">03 · Local retrieval</p><h2>Foundry Local RAG Assistant</h2></div><div class="metric-pair"><strong>8/10</strong><span>development eval</span></div></div>
+      <p class="case-lead">A retrieval assistant that runs locally without a hosted model, API key, or outbound inference request.</p>
+      <figure class="case-hero-media">
+        <img src="/assets/projects/foundry-local-rag-interface.png" alt="Foundry Local guide and local RAG assistant interface running on the developer machine" width="1265" height="712" loading="lazy" />
+        <figcaption>The real local web interface; models load on the first question and run on the device.</figcaption>
+      </figure>
       <div class="three-beats">
         <section><h3>The problem</h3><p>Hosted RAG is not suitable when source material cannot leave the machine or the API budget is zero.</p></section>
-        <section><h3>What I decided</h3><p>I built on Microsoft Foundry Local and evaluated the assistant with ten fixed questions instead of relying on a polished demonstration.</p></section>
-        <section><h3>What came of it</h3><p>Eight answers were correct and two failed. The failures pointed to retrieval quality as the binding constraint in that test.</p></section>
+        <section><h3>What I decided</h3><p>I built on Microsoft Foundry Local, stored chunks and embeddings in SQLite, and evaluated the same answer path used by the CLI instead of relying on a polished demo.</p></section>
+        <section><h3>What came of it</h3><p>The development set scored 8/10. After the configuration was frozen, a separate blind set scored 7/10. Reporting both prevents the tuned result from looking like independent validation.</p></section>
       </div>
+      <div class="evidence-note"><strong>Known limit</strong><span>Retrieval is semantic-only and scans every vector, so the current design fits a small, single-user corpus rather than production scale.</span></div>
+      <a class="repository-link" href="https://github.com/bilgenurpala/local-rag-assistant" target="_blank" rel="noreferrer">Open the Local RAG repository <span aria-hidden="true">↗</span></a>
     </article>
 
-    <article class="case-study">
+    <article id="backend-foundations" class="case-study">
       <div class="case-head"><div><p class="eyebrow">04 · Backend foundations</p><h2>Four assignments, one progression</h2></div></div>
       <p class="case-lead">The backend foundation an agent needs before it can act safely: HTTP contracts, persistence, authentication, and reproducible infrastructure.</p>
       <div class="progression-grid">
@@ -55,7 +69,11 @@ import BaseLayout from "../layouts/BaseLayout.astro";
         <p><strong>BE-03</strong><span>Supabase Auth, verified JWTs, and protected routes</span></p>
         <p><strong>BE-04</strong><span>PostgreSQL, Docker Compose, and layered architecture</span></p>
       </div>
-      <a class="repository-link" href="https://github.com/bilgenurpala/flyrank-internship" target="_blank" rel="noreferrer">Open the internship repository <span aria-hidden="true">↗</span></a>
+      <div class="case-gallery case-gallery-two" aria-label="Backend engineering evidence">
+        <figure><img src="/assets/projects/backend-sqlite-data.png" alt="SQLite database viewer showing persisted task records" width="1400" height="820" loading="lazy" /><figcaption>BE-02: records persisted in SQLite and read back through a real query.</figcaption></figure>
+        <figure><img src="/assets/projects/backend-auth-swagger.png" alt="Swagger UI showing public and JWT-protected FastAPI routes" width="1265" height="731" loading="lazy" /><figcaption>BE-03: public and protected routes made visible in the API contract.</figcaption></figure>
+      </div>
+      <a class="repository-link" href="https://github.com/bilgenurpala/flyrank-internship/tree/main/backend-engineering" target="_blank" rel="noreferrer">Open the backend assignments <span aria-hidden="true">↗</span></a>
     </article>
   </div>
 </BaseLayout>
