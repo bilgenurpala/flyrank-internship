@@ -12,7 +12,7 @@ import AnimatedPortrait from "../components/AnimatedPortrait.astro";
       <h1>I build AI agents that run real tools, test their own work, and know when to ask a human.</h1>
       <p class="hero-copy">Not chat wrappers — systems grounded in application data, explicit checks, and approval boundaries.</p>
       <div class="action-row">
-        <a class="button button-primary" href="/contact">Book a conversation</a>
+        <a class="button button-primary" href="https://cal.com/bilge-pala/intro-call" target="_blank" rel="noreferrer">Book a conversation</a>
         <a class="button button-secondary" href="#selected-work">See the work</a>
       </div>
     </div>
@@ -23,18 +23,18 @@ import AnimatedPortrait from "../components/AnimatedPortrait.astro";
 
   <section class="system-feature shell" data-reveal>
     <div class="system-feature-copy">
-      <p class="eyebrow">How the system moves</p>
-      <h2>From a real request to a verified outcome.</h2>
-      <p>The model can act, but every step stays grounded, testable, and inside a visible approval boundary.</p>
+      <p class="eyebrow">My design principle</p>
+      <h2>From a real request to a checked outcome.</h2>
+      <p>This is the control loop I design toward: ground the request, use a permitted tool, verify what changed, and stop for human approval when the system reaches its boundary.</p>
     </div>
     <SystemFlow />
   </section>
 
   <section class="proof-band" aria-label="Selected evidence" data-reveal>
     <div class="shell proof-grid">
-      <p><strong>Real tools</strong><span>GitHub, databases, tests, and local models</span></p>
-      <p><strong>Grounded outputs</strong><span>Application records instead of invented answers</span></p>
-      <p><strong>Honest evaluation</strong><span>Failures and limitations stay visible</span></p>
+      <p><strong>30 API requests</strong><span>PetAdopt Newman run with 51 assertions and 0 failures</span></p>
+      <p><strong>8/10 development eval</strong><span>Local RAG result, reported with a separate 7/10 frozen blind eval</span></p>
+      <p><strong>4 backend builds</strong><span>HTTP contracts, persistence, authentication, and containers</span></p>
     </div>
   </section>
 
@@ -49,11 +49,11 @@ import AnimatedPortrait from "../components/AnimatedPortrait.astro";
     <div class="featured-case" data-reveal>
       <div>
         <div class="card-meta">
-          <p class="eyebrow">Featured case</p>
-          <span class="status-chip">In development</span>
+          <p class="eyebrow">Lead case</p>
+          <span class="status-chip">In progress</span>
         </div>
         <h2>SafeBump</h2>
-        <p>A dependency-upgrade agent designed to open a branch, change one package, run the project's checks, and keep or roll back the result. The case will be replaced with real run evidence after the build.</p>
+        <p>A dependency-upgrade agent planned to change one package on a branch, run the project checks, and keep or roll back the result. The build begins on 15 August 2026, so this case claims no outcome yet.</p>
         <a class="inline-link" href="/work#safebump">See the planned decision loop <span aria-hidden="true">→</span></a>
       </div>
       <div class="decision-loop" aria-label="SafeBump planned decision loop">
@@ -62,7 +62,8 @@ import AnimatedPortrait from "../components/AnimatedPortrait.astro";
     </div>
     <div class="card-grid" data-reveal>
       <ProjectCard eyebrow="Grounded AI" title="PetAdopt" description="A FastAPI service where the model interprets the request and PostgreSQL determines which animals actually exist." href="/work#petadopt" />
-      <ProjectCard eyebrow="Local RAG" title="Foundry Local RAG Assistant" description="A fully local retrieval assistant evaluated on ten fixed questions, with eight correct answers and two recorded failures." href="/work#rag" />
+      <ProjectCard eyebrow="Local RAG" title="Foundry Local RAG Assistant" description="A fully local retrieval assistant with both development and frozen blind evaluation results kept visible." href="/work#rag" />
+      <ProjectCard eyebrow="Backend foundations" title="Four builds, one progression" description="A sequence from explicit HTTP contracts to persistence, verified JWTs, PostgreSQL, and Docker Compose." href="/work#backend-foundations" />
     </div>
   </section>
 

@@ -1,5 +1,11 @@
 # Dev Log
 
+2026-08-14
+- Audited the live Home, Work, About, and Contact routes and confirmed that BE-01 through BE-04 are visible on the Work page.
+- Prepared the PF-04 DNS walkthrough and kept SafeBump labelled as in development without claiming build results.
+- Found that the deployed footer initially failed the four-link requirement, then configured and privately tested a real 30-minute Cal.com booking flow before adding its verified URL to the local site update.
+- Tomorrow: start the SafeBump repository and build log after today's site evidence, portal submissions, and issue updates are complete.
+
 2026-08-13
 - Completed the no-code study-note workflow and classified it as a manually orchestrated workflow rather than an agent.
 - Connected GitHub, documented three live tool calls, and proposed a bounded revision-loop agent upgrade with human review preserved.
