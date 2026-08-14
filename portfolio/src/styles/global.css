@@ -1046,8 +1046,8 @@ h3 {
 
 .about-grid {
   display: grid;
-  grid-template-columns: 1.4fr 0.6fr;
-  gap: clamp(36px, 8vw, 96px);
+  grid-template-columns: minmax(0, 1.25fr) minmax(300px, 0.75fr);
+  gap: clamp(36px, 6vw, 72px);
   padding-bottom: clamp(72px, 10vw, 128px);
 }
 
@@ -1064,6 +1064,7 @@ h3 {
 
 .about-photo {
   width: 100%;
+  height: auto;
   margin-bottom: 24px;
   aspect-ratio: 1;
   border-radius: 12px;
