@@ -27,9 +27,9 @@ import BaseLayout from "../layouts/BaseLayout.astro";
     <article id="petadopt" class="case-study">
       <div class="case-head"><div><p class="eyebrow">02 · Grounded AI</p><h2>PetAdopt</h2></div></div>
       <p class="case-lead">A FastAPI backend and separate AI service that turn a natural-language adoption conversation into matches against real PostgreSQL records.</p>
-      <figure class="case-hero-media">
-        <img src="/assets/projects/petadopt-home.jpeg" alt="PetAdopt application showing searchable pet records" width="1280" height="703" loading="lazy" />
-        <figcaption>The application displays pet records returned by the backend rather than model-invented options.</figcaption>
+      <figure class="case-hero-media case-cover-media">
+        <img src="/assets/projects/petadopt-cover.jpg" alt="PetAdopt project cover with a phone, dog, cat, and rabbit" width="480" height="600" loading="lazy" />
+        <figcaption>PetAdopt project cover. Real interface and API evidence follow below.</figcaption>
       </figure>
       <div class="three-beats">
         <section><h3>The problem</h3><p>Filter forms cannot capture how someone describes their home, routine, or limits. A language model can interpret that context, but it must not invent an animal that is not available.</p></section>
@@ -37,9 +37,10 @@ import BaseLayout from "../layouts/BaseLayout.astro";
         <section><h3>What came of it</h3><p>The API QA run recorded 30 requests, 51 assertions, and 0 failures. Recommendation quality was checked manually, so I do not claim a measured matching-accuracy result.</p></section>
       </div>
       <div class="case-gallery" aria-label="PetAdopt evidence">
-        <figure><img src="/assets/projects/petadopt-ai-assistant.jpeg" alt="PetAdopt AI assistant matching a user's apartment needs to database records" width="1280" height="706" loading="lazy" /><figcaption>Natural-language request and grounded recommendations.</figcaption></figure>
-        <figure><img src="/assets/projects/petadopt-newman-report.png" alt="Newman report showing 30 requests, 51 assertions, and no failed tests" width="975" height="1451" loading="lazy" /><figcaption>API evidence: 30 requests, 51 assertions, 0 failures.</figcaption></figure>
-        <figure><img src="/assets/projects/petadopt-api-docs.png" alt="PetAdopt OpenAPI documentation showing authenticated endpoints" width="1019" height="2048" loading="lazy" /><figcaption>OpenAPI 3.1 contract and protected routes.</figcaption></figure>
+        <figure class="evidence-wide"><img src="/assets/projects/petadopt-home.jpeg" alt="PetAdopt application showing searchable pet records" width="1280" height="703" loading="lazy" /><figcaption>The working application displays pet records returned by the backend rather than model-invented options.</figcaption></figure>
+        <figure class="evidence-wide"><img src="/assets/projects/petadopt-ai-assistant.jpeg" alt="PetAdopt AI assistant matching a user's apartment needs to database records" width="1280" height="706" loading="lazy" /><figcaption>Natural-language request and grounded recommendations.</figcaption></figure>
+        <figure class="evidence-tall"><img src="/assets/projects/petadopt-newman-report.png" alt="Newman report showing 30 requests, 51 assertions, and no failed tests" width="975" height="1451" loading="lazy" /><figcaption>API evidence: 30 requests, 51 assertions, 0 failures.</figcaption></figure>
+        <figure class="evidence-tall"><img src="/assets/projects/petadopt-api-docs.png" alt="PetAdopt OpenAPI documentation showing authenticated endpoints" width="1019" height="2048" loading="lazy" /><figcaption>OpenAPI 3.1 contract and protected routes.</figcaption></figure>
       </div>
       <a class="repository-link" href="https://github.com/bilgenurpala/pet-adopt" target="_blank" rel="noreferrer">Open the PetAdopt repository <span aria-hidden="true">↗</span></a>
     </article>
@@ -47,7 +48,7 @@ import BaseLayout from "../layouts/BaseLayout.astro";
     <article id="rag" class="case-study">
       <div class="case-head"><div><p class="eyebrow">03 · Local retrieval</p><h2>Foundry Local RAG Assistant</h2></div><div class="metric-pair"><strong>8/10</strong><span>development eval</span></div></div>
       <p class="case-lead">A retrieval assistant that runs locally without a hosted model, API key, or outbound inference request.</p>
-      <figure class="case-hero-media">
+      <figure class="case-hero-media case-interface-media">
         <img src="/assets/projects/foundry-local-rag-interface.png" alt="Foundry Local guide and local RAG assistant interface running on the developer machine" width="1265" height="712" loading="lazy" />
         <figcaption>The real local web interface; models load on the first question and run on the device.</figcaption>
       </figure>
