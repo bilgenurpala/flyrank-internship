@@ -14,6 +14,7 @@ An evolving portfolio of backend engineering assignments completed during my par
 | [BE-02 - Database-Backed CRUD](backend-engineering/be-02) | Persistence and SQL | FastAPI, SQLite, Pytest | Full CRUD, restart persistence, database view |
 | [BE-03 - Auth: Login and Protect](backend-engineering/be-03) | Authentication and route security | Supabase Auth, JWT, HTTPBearer | Protected routes, 10 tests, Swagger locks |
 | [BE-04 - Containerized Stack](backend-engineering/be-04) | Architecture and infrastructure | PostgreSQL, Docker Compose, psycopg | Layered service and persistent named volume |
+| [SafeBump](https://github.com/bilgenurpala/safebump) | Guarded dependency-upgrade agent | Python, pip, Pytest, Git | Pre-build spec, five eval cases, explicit rollback and approval gates |
 
 ## Engineering Progression
 
@@ -51,6 +52,12 @@ flyrank-internship/
 ```
 
 Every project is self-contained and has its own README with architecture, setup instructions, API reference, verification steps, and learning outcomes.
+
+## Capstone Agent
+
+[SafeBump](https://github.com/bilgenurpala/safebump) is the internship capstone agent. It is designed to inspect pinned Python dependencies, attempt eligible upgrades one package at a time, verify them with the target project's tests and `pip check`, and keep or roll back each local change under explicit guardrails. The separate repository prevents the agent's future branch and rollback operations from moving this internship repository underneath its own source.
+
+The design specification and five measurable evaluation cases were published before implementation. SafeBump reuses a disclosed copy of BE-02 as its controlled target; it does not present that backend as new capstone work.
 
 ## Program Themes
 
