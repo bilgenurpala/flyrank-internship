@@ -1,5 +1,12 @@
 # Dev Log
 
+2026-08-15
+- Created the separate public SafeBump repository and copied BE-02 into `target/` as a disclosed, controlled dependency-upgrade fixture.
+- Verified the Ubuntu 26.04/Python 3.14 baseline: all six tests passed, `pip check` was clean, and the existing Starlette deprecation warning remained visible.
+- Ran the design tools manually; `pip-audit` found `PYSEC-2026-1845` in pytest 8.4.2, but the listed fix crosses into pytest 9 and therefore remains behind the major-upgrade approval gate.
+- Published the specification, five measurable pre-build eval cases, guardrails, platform trade-off, and an honest build log before writing agent code.
+- Tomorrow: implement the narrowest observe-and-upgrade loop, then test keep, rollback, and approval behavior against the pre-written evals.
+
 2026-08-14
 - Audited the live Home, Work, About, and Contact routes and confirmed that BE-01 through BE-04 are visible on the Work page.
 - Prepared the PF-04 DNS walkthrough and kept SafeBump labelled as in development without claiming build results.
