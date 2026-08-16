@@ -1,11 +1,18 @@
 # Dev Log
 
+2026-08-16
+- SB-06: Built the read-only observation slice, parsed `pip list --outdated` and `pip-audit` JSON, merged direct dependency evidence, and prioritized the vulnerable pytest major upgrade before minor updates.
+- SB-07: Built a fixed one-package workflow that created a FastAPI upgrade branch, installed the candidate, captured pytest exit code `0`, reported no decision, and restored the baseline afterward.
+- SB-08: Added deterministic keep, rollback, skip, and human-approval decisions; kept verified FastAPI and Uvicorn upgrades on separate branches while leaving the pytest major upgrade for approval.
+- Rollback demo: Explicitly tested HTTPX `1.0.dev3`; `pip check` remained clean but pytest collection failed, so SafeBump restored HTTPX `0.28.1` and revalidated the baseline with six passing tests.
+- Learned that dependency metadata alone cannot prove runtime compatibility; next, add reporting and honesty guardrails, run all five evals, and capture the unedited Build the Agent evidence.
+
 2026-08-15
-- Created the separate public SafeBump repository and copied BE-02 into `target/` as a disclosed, controlled dependency-upgrade fixture.
-- Verified the Ubuntu 26.04/Python 3.14 baseline: all six tests passed, `pip check` was clean, and the existing Starlette deprecation warning remained visible.
-- Ran the design tools manually; `pip-audit` found `PYSEC-2026-1845` in pytest 8.4.2, but the listed fix crosses into pytest 9 and therefore remains behind the major-upgrade approval gate.
-- Published the specification, five measurable pre-build eval cases, guardrails, platform trade-off, and an honest build log before writing agent code.
-- Tomorrow: implement the narrowest observe-and-upgrade loop, then test keep, rollback, and approval behavior against the pre-written evals.
+- SB-01: Created the separate public SafeBump repository, copied BE-02 into `target/` as a disclosed fixture, and verified the Ubuntu 26.04/Python 3.14 baseline with six passing tests and one existing warning.
+- SB-02: Ran every planned tool manually; `pip check` was clean, while `pip-audit` found `PYSEC-2026-1845` in pytest 8.4.2 and listed the major release 9.0.3 as the fix.
+- SB-03: Defined security-first prioritization, two mandatory keep gates, complete rollback, default-branch protection, time/attempt limits, remote-action approvals, and bounded-success reporting.
+- SB-04: Published five measurable eval cases before implementation, covering patch keep, test rollback, major approval, dependency conflict, and blocked push/PR behavior.
+- SB-05: Chose a scripted Python agent over n8n and a Claude Project, submitted Design Your Personal Agent, and closed issues #31–#35; next, build and test the narrowest end-to-end loop against the pre-written evals.
 
 2026-08-14
 - Audited the live Home, Work, About, and Contact routes and confirmed that BE-01 through BE-04 are visible on the Work page.
