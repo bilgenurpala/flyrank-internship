@@ -14,6 +14,8 @@ An evolving portfolio of backend engineering assignments completed during my par
 | [BE-02 - Database-Backed CRUD](backend-engineering/be-02) | Persistence and SQL | FastAPI, SQLite, Pytest | Full CRUD, restart persistence, database view |
 | [BE-03 - Auth: Login and Protect](backend-engineering/be-03) | Authentication and route security | Supabase Auth, JWT, HTTPBearer | Protected routes, 10 tests, Swagger locks |
 | [BE-04 - Containerized Stack](backend-engineering/be-04) | Architecture and infrastructure | PostgreSQL, Docker Compose, psycopg | Layered service and persistent named volume |
+| [BE-05 - The Polite Scraper](backend-engineering/be-05) | Ethical data collection | Python, robots.txt, JSON, Pytest | Rate limiting, bounded backoff, 20-record live output, 5 tests |
+| [BE-06 - Your First Background Job](backend-engineering/be-06) | Asynchronous work and state | FastAPI, SQLite, thread pool, Pytest | Queryable lifecycle, persisted metadata, 3 tests |
 | [AI Fluency](ai-fluency) | Prompting, workflow automation, agent design, and portfolio communication | Claude, ChatGPT, GitHub tools, Markdown | FL-01–FL-10, the [SB-08 decision-layer explainer](ai-fluency/explain-it-like-you-built-it), and PF-04 artifacts connected to the [live portfolio](https://bilgenurpala.netlify.app/) |
 | [SafeBump](https://github.com/bilgenurpala/safebump) | Guarded dependency-upgrade agent | Python, pip, Pytest, Git | Working decision loop, five executed evals, Markdown reports, rollback and approval evidence |
 
@@ -24,6 +26,8 @@ flowchart LR
     A["BE-01<br/>HTTP endpoints"] --> B["BE-02<br/>SQLite CRUD"]
     B --> C["BE-03<br/>JWT authentication"]
     C --> D["BE-04<br/>PostgreSQL + Docker"]
+    D --> E["BE-05<br/>Polite scraping"]
+    E --> F["BE-06<br/>Background jobs"]
 ```
 
 Each project adds one production-oriented backend concern while keeping API contracts explicit and testable.
@@ -47,7 +51,9 @@ flyrank-internship/
 │   ├── be-01/    First FastAPI endpoints
 │   ├── be-02/    SQLite-backed task CRUD API
 │   ├── be-03/    Supabase authentication and protected routes
-│   └── be-04/    PostgreSQL service orchestrated with Docker Compose
+│   ├── be-04/    PostgreSQL service orchestrated with Docker Compose
+│   ├── be-05/    Robots-aware catalogue scraper
+│   └── be-06/    SQLite-backed background job API
 ├── ai-fluency/   AI Fluency assignments organized as fl-XX
 └── assets/       Portfolio visuals
 ```
@@ -77,9 +83,9 @@ The design specification and five measurable evaluation cases were published bef
 | 3 | [BE-02 - Connect CRUD to the Database](backend-engineering/be-02) | Complete |
 | 4 | [BE-03 - Auth: Login and Protect](backend-engineering/be-03) | Complete |
 | 5 | Ship the Ugly One and PF-04 live portfolio | Complete |
-| 6 | Explain It Like You Built It | Planned |
-| 7 | Open It on Your Phone and Survive the Crit | Planned |
-| 8 | Make It Do Something | Planned |
+| 6 | Explain It Like You Built It and BE-06 background jobs | Complete |
+| 7 | Open It on Your Phone and Survive the Crit | Submitted; review pending |
+| 8 | Make It Do Something | Implemented; live verification pending |
 
 ## Running a Project
 

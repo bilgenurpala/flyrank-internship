@@ -15,4 +15,61 @@ import BaseLayout from "../layouts/BaseLayout.astro";
     </div>
     <p class="availability">Book a 30-minute intro call through Cal.com. Available times are shown in your local time zone.</p>
   </section>
+  <section class="contact-form-section shell">
+    <div>
+      <p class="eyebrow">Prefer writing first?</p>
+      <h2>Send a short note.</h2>
+      <p>The booking link remains the fastest way to start a conversation. This form is here when you need to share context first.</p>
+    </div>
+    <form class="contact-form" name="contact" method="POST" action="/contact/" data-netlify="true" netlify-honeypot="company">
+      <input type="hidden" name="form-name" value="contact" />
+      <p class="honeypot"><label>Leave this field empty: <input name="company" tabindex="-1" autocomplete="off" /></label></p>
+      <label>Name<input name="name" type="text" autocomplete="name" required maxlength="100" /></label>
+      <label>Email<input name="email" type="email" autocomplete="email" required maxlength="254" /></label>
+      <label>Message<textarea name="message" required minlength="10" maxlength="2000" rows="7"></textarea></label>
+      <button class="button button-secondary" type="submit">Send message</button>
+      <p class="form-status" data-form-status role="status" aria-live="polite"></p>
+    </form>
+  </section>
 </BaseLayout>
+
+<script>
+  const status = document.querySelector("[data-form-status]");
+  const form = document.querySelector(".contact-form");
+  form?.addEventListener("invalid", () => {
+    if (status) status.textContent = "Please complete the highlighted field with valid information.";
+  }, true);
+  form?.addEventListener("submit", async (event) => {
+    event.preventDefault();
+    const button = form.querySelector("button");
+    if (button) {
+      button.disabled = true;
+      button.textContent = "Sending…";
+    }
+    if (status) status.textContent = "Sending your message…";
+    try {
+      const body = new URLSearchParams(new FormData(form));
+      const response = await fetch("/", {
+        method: "POST",
+        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+        body
+      });
+      if (!response.ok) throw new Error("Submission failed");
+      form.reset();
+      if (status) {
+        status.textContent = "Thank you. Your message was sent successfully.";
+        status.classList.add("form-status-success");
+      }
+    } catch {
+      if (status) {
+        status.textContent = "Your message could not be sent. Please try again or use the booking link.";
+        status.classList.remove("form-status-success");
+      }
+    } finally {
+      if (button) {
+        button.disabled = false;
+        button.textContent = "Send message";
+      }
+    }
+  });
+</script>

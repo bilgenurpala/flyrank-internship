@@ -1172,6 +1172,74 @@ h3 {
   font-size: 0.9rem !important;
 }
 
+.contact-form-section {
+  display: grid;
+  grid-template-columns: minmax(0, 0.75fr) minmax(320px, 1.25fr);
+  gap: clamp(40px, 8vw, 96px);
+  padding-bottom: clamp(72px, 10vw, 128px);
+}
+
+.contact-form-section > div > p:last-child,
+.form-status {
+  color: var(--muted);
+}
+
+.contact-form {
+  display: grid;
+  gap: 20px;
+  padding: clamp(24px, 5vw, 40px);
+  border: 1px solid var(--rule);
+  border-radius: 16px;
+  background: var(--surface);
+}
+
+.contact-form label {
+  display: grid;
+  gap: 7px;
+  color: var(--teal-dark);
+  font-weight: 700;
+}
+
+.contact-form input,
+.contact-form textarea {
+  width: 100%;
+  padding: 12px 14px;
+  border: 1px solid #aeb4b2;
+  border-radius: 8px;
+  background: var(--paper);
+  color: var(--ink);
+  font: inherit;
+}
+
+.contact-form textarea {
+  resize: vertical;
+}
+
+.contact-form button {
+  justify-self: start;
+}
+
+.contact-form button:disabled {
+  cursor: wait;
+  opacity: 0.65;
+}
+
+.honeypot {
+  position: absolute;
+  left: -10000px;
+}
+
+.form-status {
+  min-height: 1.65em;
+  margin: 0;
+  font-size: 0.9rem;
+}
+
+.form-status-success {
+  color: var(--teal-dark);
+  font-weight: 700;
+}
+
 .site-footer {
   border-top: 1px solid var(--rule);
   background: var(--surface);
@@ -1229,7 +1297,8 @@ h3 {
   .featured-case,
   .about-grid,
   .hero,
-  .system-feature {
+  .system-feature,
+  .contact-form-section {
     grid-template-columns: 1fr;
   }
 
