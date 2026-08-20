@@ -14,7 +14,7 @@ An evolving portfolio of backend engineering assignments completed during my par
 | [BE-02 - Database-Backed CRUD](backend-engineering/be-02) | Persistence and SQL | FastAPI, SQLite, Pytest | Full CRUD, restart persistence, database view |
 | [BE-03 - Auth: Login and Protect](backend-engineering/be-03) | Authentication and route security | Supabase Auth, JWT, HTTPBearer | Protected routes, 10 tests, Swagger locks |
 | [BE-04 - Containerized Stack](backend-engineering/be-04) | Architecture and infrastructure | PostgreSQL, Docker Compose, psycopg | Layered service and persistent named volume |
-| [AI Fluency](ai-fluency) | Prompting, workflow automation, agent design, and portfolio communication | Claude, ChatGPT, GitHub tools, Markdown | FL-01–FL-10 and PF-04 artifacts connected to the [live portfolio](https://bilgenurpala.netlify.app/) |
+| [AI Fluency](ai-fluency) | Prompting, workflow automation, agent design, and portfolio communication | Claude, ChatGPT, GitHub tools, Markdown | FL-01–FL-10, the [SB-08 decision-layer explainer](ai-fluency/explain-it-like-you-built-it), and PF-04 artifacts connected to the [live portfolio](https://bilgenurpala.netlify.app/) |
 | [SafeBump](https://github.com/bilgenurpala/safebump) | Guarded dependency-upgrade agent | Python, pip, Pytest, Git | Working decision loop, five executed evals, Markdown reports, rollback and approval evidence |
 
 ## Engineering Progression
