@@ -1043,6 +1043,38 @@ h3 {
   gap: 12px;
 }
 
+.eval-grid {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 10px;
+  margin-top: 34px;
+}
+
+.eval-grid p {
+  margin: 0;
+  padding: 16px;
+  border: 1px solid var(--rule);
+  border-radius: 10px;
+  background: var(--paper);
+}
+
+.eval-grid strong,
+.eval-grid span {
+  display: block;
+}
+
+.eval-grid strong {
+  margin-bottom: 8px;
+  color: var(--teal-dark);
+  font-family: var(--font-head);
+}
+
+.eval-grid span {
+  color: var(--muted);
+  font-size: 0.82rem;
+  line-height: 1.5;
+}
+
 .progression-grid p {
   margin: 0;
   padding: 18px;
@@ -1179,6 +1211,7 @@ h3 {
   .proof-grid,
   .three-beats,
   .progression-grid,
+  .eval-grid,
   .card-grid,
   .case-gallery {
     grid-template-columns: repeat(2, 1fr);
@@ -1272,6 +1305,7 @@ h3 {
   .card-grid,
   .three-beats,
   .progression-grid,
+  .eval-grid,
   .case-gallery,
   .case-gallery-two {
     grid-template-columns: 1fr;
