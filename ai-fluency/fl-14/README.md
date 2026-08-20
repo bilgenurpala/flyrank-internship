@@ -10,10 +10,10 @@ A backend is the part of a system that receives requests, applies server-side be
 
 Empty, malformed, and too-short input is blocked with native browser validation and a visible guidance message. During submission, the button is disabled and reports progress. A successful response clears the form and shows confirmation. A network or Netlify failure keeps the form values available and shows a retry or booking fallback without displaying false success.
 
-## Verification checklist
+## Production verification
 
-- Deploy the committed form markup to Netlify.
-- Confirm the `contact` form appears in the Netlify dashboard.
-- Submit a real message from the public URL.
-- Confirm the submission appears in the Netlify Forms inbox.
-- Capture the successful page state and dashboard submission as private portal evidence.
+- The committed form markup and static Netlify form blueprint are deployed.
+- Netlify detects the `contact` form and reports the honeypot as active.
+- A real message submitted from the public URL returned the inline success state.
+- The same message appeared in the Netlify Forms verified-submissions inbox.
+- `contact-form-success.png` and `netlify-verified-submission.png` preserve the two sides of the end-to-end check.
