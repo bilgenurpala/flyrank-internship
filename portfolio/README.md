@@ -35,7 +35,7 @@ This portfolio is a static Astro site deployed on Netlify. Astro was selected be
 
 - `src/styles/global.css` contains the identity-kit colors, typography, layout, responsive breakpoints, focus states, evidence galleries, and animations. Its reduced-motion rule disables animation when the visitor requests less motion.
 - `public/assets/logo.svg` and the favicon files carry the identity mark into the browser tab, header, and saved mobile shortcut.
-- `public/assets/bilgenur-pala-portrait.png` is the real portrait used on Home and About.
+- `public/assets/bilgenur-pala-portrait.webp` is the real portrait used on Home and About, resized and encoded for web delivery.
 - `public/cv/bilgenur-pala-ai-engineer-resume.pdf` is the verified one-page AI Engineer CV linked from About, Contact, and the footer.
 - `public/assets/projects/petadopt-*` came from the PetAdopt repository's recorded application, AI assistant, OpenAPI, and Newman evidence.
 - `public/assets/projects/foundry-local-rag-interface.png` is a capture of the real local RAG web interface running at `127.0.0.1:8000`.
