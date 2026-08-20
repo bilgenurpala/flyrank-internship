@@ -1,10 +1,10 @@
 # Dev Log
 
 2026-08-20
-- Built and verified BE-05 and BE-06, then published SafeBump as the lead portfolio case with separate supporting cases for polite scraping and trackable background jobs.
-- Added the Netlify contact form and started the FL-15 hardening pass: local routes and assets resolve, booking and repository URLs return HTTP 200, and launch metadata now includes canonical and social fields.
-- The hardening pass exposed three honest blockers: the form still needs a production inbox submission, the new Work/Form layouts need physical-phone retesting, and one local CV source still labels completed SafeBump as in progress.
-- Tomorrow: finish the SafeBump recording and Checkpoint 2 evidence first; move BE-07 to 22 August if those gates are not complete.
+- Built and verified BE-05 and BE-06, completed the SafeBump-led portfolio structure, and prepared the hardening, continuation, public-story, and capstone packages without submitting unfinished portal cards.
+- Across the program I learned that agent quality depends as much on reversible actions, explicit approval boundaries, and honest evidence reporting as on completing the happy path.
+- Final auditing still exposes real blockers: production form and analytics evidence, fresh mobile QA, both checkpoint approvals, public videos and story, CV consistency, and the badge or showcase steps controlled by FlyRank.
+- Next: resolve the live evidence gates, record and publish the two distinct videos, then submit each portal card in order before closing issues.
 
 2026-08-19
 - Completed the FL-12 physical-iPhone walkthrough across Home, Work, About, Contact, the updated ATS resume, and the real Cal.com scheduling screen.

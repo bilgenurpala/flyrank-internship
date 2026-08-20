@@ -16,6 +16,7 @@ An evolving portfolio of backend engineering assignments completed during my par
 | [BE-04 - Containerized Stack](backend-engineering/be-04) | Architecture and infrastructure | PostgreSQL, Docker Compose, psycopg | Layered service and persistent named volume |
 | [BE-05 - The Polite Scraper](backend-engineering/be-05) | Ethical data collection | Python, robots.txt, JSON, Pytest | Rate limiting, bounded backoff, 20-record live output, 5 tests |
 | [BE-06 - Your First Background Job](backend-engineering/be-06) | Asynchronous work and state | FastAPI, SQLite, thread pool, Pytest | Queryable lifecycle, persisted metadata, 3 tests |
+| [BE-07 - PDF Report Generator](backend-engineering/be-07) | Reporting pipeline | FastAPI, SQLite, ReportLab, background jobs | SQL aggregation, stored PDF, queryable job lifecycle, 4 tests |
 | [AI Fluency](ai-fluency) | Prompting, workflow automation, agent design, and portfolio communication | Claude, ChatGPT, GitHub tools, Markdown | FL-01–FL-10, the [SB-08 decision-layer explainer](ai-fluency/explain-it-like-you-built-it), and PF-04 artifacts connected to the [live portfolio](https://bilgenurpala.netlify.app/) |
 | [SafeBump](https://github.com/bilgenurpala/safebump) | Guarded dependency-upgrade agent | Python, pip, Pytest, Git | Working decision loop, five executed evals, Markdown reports, rollback and approval evidence |
 
@@ -28,6 +29,7 @@ flowchart LR
     C --> D["BE-04<br/>PostgreSQL + Docker"]
     D --> E["BE-05<br/>Polite scraping"]
     E --> F["BE-06<br/>Background jobs"]
+    F --> G["BE-07<br/>PDF reports"]
 ```
 
 Each project adds one production-oriented backend concern while keeping API contracts explicit and testable.
@@ -53,7 +55,8 @@ flyrank-internship/
 │   ├── be-03/    Supabase authentication and protected routes
 │   ├── be-04/    PostgreSQL service orchestrated with Docker Compose
 │   ├── be-05/    Robots-aware catalogue scraper
-│   └── be-06/    SQLite-backed background job API
+│   ├── be-06/    SQLite-backed background job API
+│   └── be-07/    On-demand PDF report pipeline
 ├── ai-fluency/   AI Fluency assignments organized as fl-XX
 └── assets/       Portfolio visuals
 ```
