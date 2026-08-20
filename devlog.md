@@ -1,5 +1,11 @@
 # Dev Log
 
+2026-08-20
+- Completed SafeBump SB-09 through SB-11: per-run Markdown reports, enforced branch/remote/time/attempt guardrails, bounded coverage statements, and five executed Linux evaluations.
+- The first main-guard report falsely listed tests as verified even though pytest never ran; the first rollback reason also reduced a concrete `BaseTransport` exception to a generic error count.
+- Fixed both honesty defects, preserved the before/after raw records, and verified rollback after a test failure and after a real `pip check` conflict with green tests.
+- Next: finalize SB-12 documentation and use the SB-08 decision layer for Explain It Like You Built It.
+
 2026-08-16
 - SB-06: Built the read-only observation slice, parsed `pip list --outdated` and `pip-audit` JSON, merged direct dependency evidence, and prioritized the vulnerable pytest major upgrade before minor updates.
 - SB-07: Built a fixed one-package workflow that created a FastAPI upgrade branch, installed the candidate, captured pytest exit code `0`, reported no decision, and restored the baseline afterward.
