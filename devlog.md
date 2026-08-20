@@ -1,10 +1,10 @@
 # Dev Log
 
 2026-08-20
-- Built and verified BE-05 and BE-06, completed the SafeBump-led portfolio structure, and prepared the hardening, continuation, public-story, and capstone packages without submitting unfinished portal cards.
-- Across the program I learned that agent quality depends as much on reversible actions, explicit approval boundaries, and honest evidence reporting as on completing the happy path.
-- Final auditing still exposes real blockers: production form and analytics evidence, fresh mobile QA, both checkpoint approvals, public videos and story, CV consistency, and the badge or showcase steps controlled by FlyRank.
-- Next: resolve the live evidence gates, record and publish the two distinct videos, then submit each portal card in order before closing issues.
+- Built and verified BE-05, BE-06, BE-07, and the BE-09 React Flow/Inngest decision workflow; the contact form now has a real verified Netlify submission.
+- Hardened the production portfolio with edge-case form tests, logged-out booking checks, physical-phone QA, a 93/100/100/100 mobile PageSpeed run, Search Console ownership, and an accepted sitemap.
+- Across the program I learned that durable AI work depends on explicit state, reversible actions, constrained model outputs, and claims tied to observed evidence rather than happy-path demos.
+- Next: connect analytics, record and publish the two distinct videos, publish the bounded build story, and submit each portal card before closing its issue.
 
 2026-08-19
 - Completed the FL-12 physical-iPhone walkthrough across Home, Work, About, Contact, the updated ATS resume, and the real Cal.com scheduling screen.

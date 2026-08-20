@@ -17,6 +17,7 @@ An evolving portfolio of backend engineering assignments completed during my par
 | [BE-05 - The Polite Scraper](backend-engineering/be-05) | Ethical data collection | Python, robots.txt, JSON, Pytest | Rate limiting, bounded backoff, 20-record live output, 5 tests |
 | [BE-06 - Your First Background Job](backend-engineering/be-06) | Asynchronous work and state | FastAPI, SQLite, thread pool, Pytest | Queryable lifecycle, persisted metadata, 3 tests |
 | [BE-07 - PDF Report Generator](backend-engineering/be-07) | Reporting pipeline | FastAPI, SQLite, ReportLab, background jobs | SQL aggregation, stored PDF, queryable job lifecycle, 4 tests |
+| [BE-09 - AI Decision Flow](backend-engineering/be-09) | Visual AI workflow execution | Next.js, React Flow, Inngest, OpenAI | Editable YES/NO graph, durable node steps, execution path and logs, 4 tests |
 | [AI Fluency](ai-fluency) | Prompting, workflow automation, agent design, and portfolio communication | Claude, ChatGPT, GitHub tools, Markdown | FL-01–FL-10, the [SB-08 decision-layer explainer](ai-fluency/explain-it-like-you-built-it), and PF-04 artifacts connected to the [live portfolio](https://bilgenurpala.netlify.app/) |
 | [SafeBump](https://github.com/bilgenurpala/safebump) | Guarded dependency-upgrade agent | Python, pip, Pytest, Git | Working decision loop, five executed evals, Markdown reports, rollback and approval evidence |
 
@@ -30,6 +31,7 @@ flowchart LR
     D --> E["BE-05<br/>Polite scraping"]
     E --> F["BE-06<br/>Background jobs"]
     F --> G["BE-07<br/>PDF reports"]
+    G --> H["BE-09<br/>AI decision flows"]
 ```
 
 Each project adds one production-oriented backend concern while keeping API contracts explicit and testable.
@@ -56,7 +58,8 @@ flyrank-internship/
 │   ├── be-04/    PostgreSQL service orchestrated with Docker Compose
 │   ├── be-05/    Robots-aware catalogue scraper
 │   ├── be-06/    SQLite-backed background job API
-│   └── be-07/    On-demand PDF report pipeline
+│   ├── be-07/    On-demand PDF report pipeline
+│   └── be-09/    React Flow and Inngest AI decision workflow
 ├── ai-fluency/   AI Fluency assignments organized as fl-XX
 └── assets/       Portfolio visuals
 ```
@@ -88,7 +91,8 @@ The design specification and five measurable evaluation cases were published bef
 | 5 | Ship the Ugly One and PF-04 live portfolio | Complete |
 | 6 | Explain It Like You Built It and BE-06 background jobs | Complete |
 | 7 | Open It on Your Phone and Survive the Crit | Submitted; review pending |
-| 8 | Make It Do Something | Implemented; live verification pending |
+| 8 | Make It Do Something | Complete; production submission verified |
+| 9 | [BE-09 - Build an AI Decision Flow with React Flow + Inngest](backend-engineering/be-09) | Implemented; portal submission pending |
 
 ## Running a Project
 
