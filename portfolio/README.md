@@ -27,9 +27,9 @@ This portfolio is a static Astro site deployed on Netlify. Astro was selected be
 ## Pages
 
 - `src/pages/index.astro` is the Home route. It states the positioning claim, shows selected evidence, presents SafeBump as the completed lead case, and links to every full case.
-- `src/pages/work.astro` is the Work route. It contains the full SafeBump, PetAdopt, Local RAG, and backend-foundations cases with evidence, repository links, and known limits.
+- `src/pages/work.astro` is the Work route. It contains the full SafeBump, BE-05, BE-06, BE-07, PetAdopt, Local RAG, and backend-foundations cases with evidence, repository links, and known limits.
 - `src/pages/about.astro` is the About route. It explains the engineering progression, working method, current focus, portrait, and profile links.
-- `src/pages/contact.astro` is the Contact route. Its primary action opens the verified public Cal.com booking page; GitHub, LinkedIn, and CV remain supporting links.
+- `src/pages/contact.astro` is the Contact route. Its primary action opens the verified public Cal.com booking page; GitHub, LinkedIn, CV, and a secondary Netlify contact form support visitors who need to send context first.
 
 ## Styling and Assets
 
@@ -43,4 +43,4 @@ This portfolio is a static Astro site deployed on Netlify. Astro was selected be
 
 ## Ownership Boundaries
 
-The site has no database, authentication, form handler, analytics, or application backend. External profile, repository, and booking links leave the site. SafeBump's reported results are bounded to its committed Ubuntu 26.04/Python 3.14 evaluation evidence.
+The site has no application database or authentication. Netlify Forms is the only managed backend feature; no custom server handles submissions. Analytics is not installed yet. External profile, repository, and booking links leave the site. SafeBump's reported results are bounded to its committed Ubuntu 26.04/Python 3.14 evaluation evidence.

@@ -1,5 +1,11 @@
 # Dev Log
 
+2026-08-20
+- Built and verified BE-05 and BE-06, completed the SafeBump-led portfolio structure, and prepared the hardening, continuation, public-story, and capstone packages without submitting unfinished portal cards.
+- Across the program I learned that agent quality depends as much on reversible actions, explicit approval boundaries, and honest evidence reporting as on completing the happy path.
+- Final auditing still exposes real blockers: production form and analytics evidence, fresh mobile QA, both checkpoint approvals, public videos and story, CV consistency, and the badge or showcase steps controlled by FlyRank.
+- Next: resolve the live evidence gates, record and publish the two distinct videos, then submit each portal card in order before closing issues.
+
 2026-08-19
 - Completed the FL-12 physical-iPhone walkthrough across Home, Work, About, Contact, the updated ATS resume, and the real Cal.com scheduling screen.
 - Fixed undersized touch targets, a 2.7 MB portrait, two mobile evidence-image failures, inconsistent booking emphasis, and stale SafeBump placeholder copy; all corrections were redeployed and retested.
