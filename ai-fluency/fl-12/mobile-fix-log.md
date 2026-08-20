@@ -17,6 +17,8 @@ The required route is Home → Work → About → Contact. The portfolio has one
 | The About closing CTA routed through Contact instead of opening the intended action. | Changed the primary CTA to open the verified public Cal.com URL directly. | URL returned HTTP 200; real appointment-screen check pending. |
 | The technical walkthrough claimed the booking URL was unknown and SafeBump had no evidence. | Updated the walkthrough to match the current booking link and the intentionally delayed SafeBump case-study publication. | Documentation checked against current source. |
 | The 1254 × 1254 portrait PNG was 2.7 MB, dominating the page's image transfer. | Re-encoded a proportionally resized 900 × 900 WebP at 49 KB and updated both portrait consumers. The original remains in the repository as the source asset. | Production build passed; final sharpness check pending on the physical phone. |
+| The PetAdopt cover became too narrow inside the case-study padding on the physical phone. | Let the cover use the card's full mobile width and made the source image tappable at its original size. | Physical-phone retest pending. |
+| iPhone Safari reserved an excessively tall box for the Foundry Local RAG capture and pushed the actual screenshot to the bottom. | Set the image's explicit source ratio and automatic height, expanded it to the card width on mobile, and added a full-size evidence link. | Physical-phone retest pending. |
 
 ## Automated and Desktop-Width Checks
 
