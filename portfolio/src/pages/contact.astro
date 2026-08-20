@@ -48,7 +48,7 @@ import BaseLayout from "../layouts/BaseLayout.astro";
     }
     if (status) status.textContent = "Sending your message…";
     try {
-      const body = new URLSearchParams(new FormData(form));
+      const body = new URLSearchParams(new FormData(form)).toString();
       const response = await fetch("/", {
         method: "POST",
         headers: { "Content-Type": "application/x-www-form-urlencoded" },
