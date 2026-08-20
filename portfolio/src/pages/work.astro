@@ -35,11 +35,11 @@ import BaseLayout from "../layouts/BaseLayout.astro";
     <article id="petadopt" class="case-study">
       <div class="case-head"><div><p class="eyebrow">02 · Grounded AI</p><h2>PetAdopt</h2></div></div>
       <p class="case-lead">A FastAPI backend and separate AI service that turn a natural-language adoption conversation into matches against real PostgreSQL records.</p>
-      <figure class="case-hero-media case-cover-media">
-        <a class="evidence-image-link" href="/assets/projects/petadopt-cover.jpg" target="_blank" aria-label="Open the PetAdopt project cover at full size">
-          <img src="/assets/projects/petadopt-cover.jpg" alt="PetAdopt project cover with a phone, dog, cat, and rabbit" width="480" height="600" loading="lazy" />
+      <figure class="case-hero-media case-interface-media case-petadopt-media">
+        <a class="evidence-image-link" href="/assets/projects/petadopt-home.jpeg" target="_blank" aria-label="Open the working PetAdopt interface at full size">
+          <img src="/assets/projects/petadopt-home.jpeg" alt="PetAdopt application showing searchable pet records" width="1280" height="703" loading="lazy" />
         </a>
-        <figcaption>PetAdopt project cover. Tap to open it at full size; real interface and API evidence follow below.</figcaption>
+        <figcaption>The working application displays pet records returned by the backend. Tap to inspect the full-size interface.</figcaption>
       </figure>
       <div class="three-beats">
         <section><h3>The problem</h3><p>Filter forms cannot capture how someone describes their home, routine, or limits. A language model can interpret that context, but it must not invent an animal that is not available.</p></section>
@@ -47,7 +47,6 @@ import BaseLayout from "../layouts/BaseLayout.astro";
         <section><h3>What came of it</h3><p>The API QA run recorded 30 requests, 51 assertions, and 0 failures. Recommendation quality was checked manually, so I do not claim a measured matching-accuracy result.</p></section>
       </div>
       <div class="case-gallery" aria-label="PetAdopt evidence">
-        <figure class="evidence-wide"><img src="/assets/projects/petadopt-home.jpeg" alt="PetAdopt application showing searchable pet records" width="1280" height="703" loading="lazy" /><figcaption>The working application displays pet records returned by the backend rather than model-invented options.</figcaption></figure>
         <figure class="evidence-wide"><img src="/assets/projects/petadopt-ai-assistant.jpeg" alt="PetAdopt AI assistant matching a user's apartment needs to database records" width="1280" height="706" loading="lazy" /><figcaption>Natural-language request and grounded recommendations.</figcaption></figure>
         <figure class="evidence-tall"><img src="/assets/projects/petadopt-newman-report.png" alt="Newman report showing 30 requests, 51 assertions, and no failed tests" width="975" height="1451" loading="lazy" /><figcaption>API evidence: 30 requests, 51 assertions, 0 failures.</figcaption></figure>
         <figure class="evidence-tall"><img src="/assets/projects/petadopt-api-docs.png" alt="PetAdopt OpenAPI documentation showing authenticated endpoints" width="1019" height="2048" loading="lazy" /><figcaption>OpenAPI 3.1 contract and protected routes.</figcaption></figure>
