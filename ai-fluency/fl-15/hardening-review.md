@@ -26,11 +26,11 @@ The hardening review covers the public Home, Work, About, and Contact routes, ev
 
 ## Hard critique before submission
 
-SafeBump is the strongest case because it shows a real decision boundary and failure evidence, but the page still relies heavily on text. The rollback result is described rather than shown visually, so a skeptical reviewer must leave the portfolio to inspect raw evidence. BE-05, BE-06, and BE-07 remain concise implementation summaries rather than deep case studies; that is acceptable for supporting work, not for lead evidence. The contact form is now operational and verified in the Netlify inbox, and the CV agrees that SafeBump is complete. The remaining launch weakness is discovery latency: Google can crawl the site and has accepted its sitemap, but the portfolio is not yet visible in the tested name search.
+SafeBump is the strongest case because it shows a real decision boundary and failure evidence, but the page still relies heavily on text. The rollback result is described rather than shown visually, so a skeptical reviewer must leave the portfolio to inspect raw evidence. BE-05, BE-06, and BE-08 remain concise implementation summaries rather than deep case studies; that is acceptable for supporting work, not for lead evidence. The contact form is now operational and verified in the Netlify inbox, and the CV agrees that SafeBump is complete. The remaining launch weakness is discovery latency: Google can crawl the site and has accepted its sitemap, but the portfolio is not yet visible in the tested name search.
 
 ## Submission gate
 
-- [x] Production deployment contains SafeBump, BE-05, BE-06, BE-07, and the contact form.
+- [x] Production deployment contains SafeBump, BE-05, BE-06, BE-08, and the contact form.
 - [x] A real contact submission appears in Netlify Forms.
 - [x] Work and Contact pass a fresh physical-phone check.
 - [x] Internal routes, CV, booking, and repository links pass deployed checks.
