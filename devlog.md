@@ -1,5 +1,11 @@
 # Dev Log
 
+2026-08-19
+- Audited the portfolio for FL-12 and FL-13, aligned the primary action around the verified Cal.com booking route, and increased navigation and supporting-link touch targets for mobile use.
+- Added a before/after mobile fix log that separates build and HTTP evidence from the still-required physical-phone checks instead of treating a responsive viewport as device proof.
+- The critique exposed stale documentation and an evidence-risk: SafeBump is intentionally held for the 21 August case-study update, but that delay must remain explicit to the reviewer.
+- Next: complete Home → Work → About → Contact and booking checks on the physical phone, submit both cards, then classify and address Checkpoint 1 feedback.
+
 2026-08-18
 - Completed SB-12 by turning the SafeBump README into a stranger-reproducible guide with Linux setup, real report examples, Mermaid decision diagrams, guardrails, eval results, limitations, and MIT licensing.
 - Wrote Explain It Like You Built It around the SB-08 keep/rollback boundary and distinguished deterministic tool-driven decisions from open-ended model judgment.

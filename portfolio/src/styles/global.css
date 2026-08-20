@@ -159,7 +159,9 @@ h3 {
 }
 
 .nav-list a {
-  display: block;
+  display: inline-flex;
+  min-height: 44px;
+  align-items: center;
   padding: 9px 12px;
   color: var(--muted);
   font-size: 0.92rem;
@@ -726,6 +728,14 @@ h3 {
   text-decoration-thickness: 1px;
 }
 
+.inline-link,
+.repository-link,
+.footer-links a {
+  display: inline-flex;
+  min-height: 44px;
+  align-items: center;
+}
+
 .inline-link:hover,
 .repository-link:hover,
 .footer-links a:hover {
@@ -1223,8 +1233,9 @@ h3 {
   }
 
   .nav-list a {
-    padding: 7px 8px;
-    font-size: 0.84rem;
+    min-height: 44px;
+    padding: 9px 8px;
+    font-size: 0.875rem;
   }
 
   .portrait-node-one {
