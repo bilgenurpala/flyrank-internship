@@ -13,15 +13,23 @@ import BaseLayout from "../layouts/BaseLayout.astro";
     <article id="safebump" class="case-study case-featured">
       <div class="case-head">
         <div><p class="eyebrow">01 · Agent engineering</p><h2>SafeBump</h2></div>
-        <span class="status-chip">Planned</span>
+        <span class="status-chip">Built · 5/5 evals</span>
       </div>
-      <p class="case-lead">A dependency-upgrade agent with a narrow planned job: change one dependency at a time, test the result, and keep or roll back the change.</p>
+      <p class="case-lead">A guarded local Python agent that upgrades one pinned dependency at a time and turns test, compatibility, version, and approval evidence into an explicit decision.</p>
       <div class="three-beats">
         <section><h3>The problem</h3><p>Dependency updates are easy to postpone because a small version change can quietly break a project. The difficult part is deciding what evidence is enough to keep it.</p></section>
-        <section><h3>The planned decision</h3><p>SafeBump will work on a branch, run pytest and pip check, record its evidence, and stop for human approval before any push. Major versions will never be automatic.</p></section>
-        <section><h3>Current result</h3><p>No result is claimed. The build, evaluation, repository, report, and demo will replace this reserved space only after real runs exist.</p></section>
+        <section><h3>What I decided</h3><p>SafeBump works on an isolated branch, runs pytest and pip check, records what actually completed, and keeps or restores the candidate. Major upgrades and remote actions stop for explicit approval; merge is never automatic.</p></section>
+        <section><h3>What came of it</h3><p>All five pre-written evaluations passed on Ubuntu 26.04 with Python 3.14.4: safe patch keep, test rollback, major-version approval, dependency-conflict rollback, and blocked unapproved push.</p></section>
       </div>
-      <div class="evidence-note"><strong>Evidence status</strong><span>Planned architecture only. No run evidence exists yet.</span></div>
+      <div class="eval-grid" aria-label="SafeBump evaluation results">
+        <p><strong>01 · Keep</strong><span>Uvicorn patch passed 6 tests and pip check.</span></p>
+        <p><strong>02 · Roll back</strong><span>HTTPX broke pytest collection; 0.28.1 was restored.</span></p>
+        <p><strong>03 · Ask</strong><span>A pytest major security fix waited for approval.</span></p>
+        <p><strong>04 · Reject</strong><span>Green tests did not override a pip conflict.</span></p>
+        <p><strong>05 · Block</strong><span>An unapproved push created no remote ref.</span></p>
+      </div>
+      <div class="evidence-note"><strong>Honest boundary</strong><span>Six passing target tests and a clean pip check provide bounded evidence, not proof of complete behavior or security. Windows and macOS remain untested.</span></div>
+      <a class="repository-link" href="https://github.com/bilgenurpala/safebump" target="_blank" rel="noreferrer">Open SafeBump, reports, and raw runs <span aria-hidden="true">↗</span></a>
     </article>
 
     <article id="petadopt" class="case-study">

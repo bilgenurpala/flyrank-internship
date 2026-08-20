@@ -26,7 +26,7 @@ The required route is Home → Work → About → Contact. The portfolio has one
 - Live Home, Work, About, and Contact routes: HTTP 200.
 - Public Cal.com URL: HTTP 200. This proves network reachability, not that the appointment interface works on the physical phone.
 - Responsive source audit: single-column layouts are defined below 620 px; images use `max-width: 100%`; buttons use a 48 px minimum height; primary and supporting text retain at least a 16 px body baseline on mobile.
-- Placeholder audit: no generic placeholder text was found. SafeBump remains visibly marked as planned/in development by design and is disclosed in the submission notes.
+- Placeholder audit: no generic placeholder text remains. SafeBump now presents its completed 5/5 evaluation record, repository evidence, guardrails, and explicit verification limits.
 
 ## Required Physical-Phone Retest
 
