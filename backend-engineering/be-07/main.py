@@ -1,51 +1,33 @@
-from contextlib import asynccontextmanager
-from pathlib import Path
-from uuid import uuid4
+from fastapi import Depends, FastAPI, HTTPException
 
-from fastapi import FastAPI
-from fastapi.responses import FileResponse, JSONResponse
-from pydantic import BaseModel, Field
-
-import database
-import job_store
-import pdf_report
-from jobs import runner
+from config import Settings, get_settings
+from provider import GeminiClassifier, InvalidModelResponse, ProviderError, ProviderUnavailable
+from schemas import ClassificationRequest, ClassificationResponse
 
 
-class ReportRequest(BaseModel):
-    title: str = Field(default="Task Summary Report", min_length=1, max_length=120)
+app = FastAPI(title="FlyRank BE-07: Connect to an AI API")
 
 
-@asynccontextmanager
-async def lifespan(application):
-    database.initialize()
-    yield
+def get_classifier(settings: Settings = Depends(get_settings)) -> GeminiClassifier:
+    return GeminiClassifier(settings)
 
 
-app = FastAPI(title="FlyRank BE-07", lifespan=lifespan)
+@app.post("/classify", response_model=ClassificationResponse)
+async def classify_message(
+    request: ClassificationRequest,
+    classifier: GeminiClassifier = Depends(get_classifier),
+) -> ClassificationResponse:
+    try:
+        result, attempts = await classifier.classify(request.message)
+    except ProviderUnavailable as error:
+        raise HTTPException(status_code=503, detail=str(error)) from error
+    except InvalidModelResponse as error:
+        raise HTTPException(status_code=502, detail=str(error)) from error
+    except ProviderError as error:
+        raise HTTPException(status_code=502, detail=str(error)) from error
+    return ClassificationResponse(**result.model_dump(), model=classifier.settings.gemini_model, attempts=attempts)
 
 
-@app.post("/report-jobs", status_code=202)
-def create_report_job(request: ReportRequest):
-    job_id = str(uuid4())
-    payload = request.model_dump()
-    job = job_store.create(job_id, payload)
-    runner.enqueue(job_id, payload)
-    return job
-
-
-@app.get("/report-jobs/{job_id}")
-def get_report_job(job_id: str):
-    job = job_store.get(job_id)
-    if job is None:
-        return JSONResponse(status_code=404, content={"error": "Job not found"})
-    return job
-
-
-@app.get("/reports/{filename}")
-def download_report(filename: str):
-    safe_name = Path(filename).name
-    path = pdf_report.REPORTS_DIRECTORY / safe_name
-    if safe_name != filename or not path.is_file():
-        return JSONResponse(status_code=404, content={"error": "Report not found"})
-    return FileResponse(path, media_type="application/pdf", filename=safe_name)
+@app.get("/health")
+def health() -> dict[str, str]:
+    return {"status": "ok"}

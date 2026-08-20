@@ -50,7 +50,7 @@ import BaseLayout from "../layouts/BaseLayout.astro";
       <div class="three-beats">
         <section><h3>The problem</h3><p>A long-running HTTP request gives the caller no durable handle and can time out before the work finishes. The service needs to acknowledge the request quickly and expose what happened afterward.</p></section>
         <section><h3>What I decided</h3><p>The API stores the job before handing it to a bounded worker pool, then exposes queued, running, done, or failed state through a polling endpoint. SQLite preserves metadata across application restarts.</p></section>
-        <section><h3>What came of it</h3><p>Three tests verify accepted work, a completed result, an observable failure, and an unknown-job response. BE-07 then reused the same lifecycle for stored PDF report generation.</p></section>
+        <section><h3>What came of it</h3><p>Three tests verify accepted work, a completed result, an observable failure, and an unknown-job response. BE-08 then reused the same lifecycle for stored PDF report generation.</p></section>
       </div>
       <div class="evidence-note"><strong>Honest boundary</strong><span>This is a single-process learning implementation. Automatic retry stays off until job-specific idempotency prevents duplicate side effects; a process crash can leave a running job unresolved.</span></div>
       <a class="repository-link" href="https://github.com/bilgenurpala/flyrank-internship/tree/main/backend-engineering/be-06" target="_blank" rel="noreferrer">Open the job API, tests, and architecture <span aria-hidden="true">↗</span></a>
@@ -65,7 +65,7 @@ import BaseLayout from "../layouts/BaseLayout.astro";
         <section><h3>What came of it</h3><p>Four tests cover SQL totals, the asynchronous success path, a valid stored PDF, missing resources, and an observable renderer failure. The committed example report was also rendered and checked visually.</p></section>
       </div>
       <div class="evidence-note"><strong>Honest boundary</strong><span>The worker and files are local to one process. There is no crash recovery, shared object storage, authentication, cleanup policy, or safe automatic retry without an idempotency key.</span></div>
-      <a class="repository-link" href="https://github.com/bilgenurpala/flyrank-internship/tree/main/backend-engineering/be-07" target="_blank" rel="noreferrer">Open the PDF pipeline, tests, and example report <span aria-hidden="true">↗</span></a>
+      <a class="repository-link" href="https://github.com/bilgenurpala/flyrank-internship/tree/main/backend-engineering/be-08" target="_blank" rel="noreferrer">Open the PDF pipeline, tests, and example report <span aria-hidden="true">↗</span></a>
     </article>
 
     <article id="petadopt" class="case-study">

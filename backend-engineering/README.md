@@ -10,6 +10,7 @@ Backend engineering assignments completed during the FlyRank AI internship.
 | [BE-04](be-04) | Containerized PostgreSQL stack | Complete |
 | [BE-05](be-05) | Polite, robots-aware scraping | Complete |
 | [BE-06](be-06) | Trackable background jobs | Complete |
-| [BE-07](be-07) | On-demand PDF reports | Complete |
+| [BE-07](be-07) | Trustworthy AI API integration | Complete |
+| [BE-08](be-08) | On-demand PDF reports | Complete |
 
 [Back to internship portfolio](../README.md)

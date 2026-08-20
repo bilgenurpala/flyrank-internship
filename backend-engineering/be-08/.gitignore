@@ -1,0 +1,6 @@
+__pycache__/
+.pytest_cache/
+.venv/
+reports.db
+generated-reports/*.pdf
+!generated-reports/task-summary-example.pdf
