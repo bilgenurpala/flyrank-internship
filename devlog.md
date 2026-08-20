@@ -6,6 +6,13 @@
 - Fixed both honesty defects, preserved the before/after raw records, and verified rollback after a test failure and after a real `pip check` conflict with green tests.
 - Next: finalize SB-12 documentation and use the SB-08 decision layer for Explain It Like You Built It.
 
+2026-08-16
+- SB-06: Built the read-only observation slice, parsed `pip list --outdated` and `pip-audit` JSON, merged direct dependency evidence, and prioritized the vulnerable pytest major upgrade before minor updates.
+- SB-07: Built a fixed one-package workflow that created a FastAPI upgrade branch, installed the candidate, captured pytest exit code `0`, reported no decision, and restored the baseline afterward.
+- SB-08: Added deterministic keep, rollback, skip, and human-approval decisions; kept verified FastAPI and Uvicorn upgrades on separate branches while leaving the pytest major upgrade for approval.
+- Rollback demo: Explicitly tested HTTPX `1.0.dev3`; `pip check` remained clean but pytest collection failed, so SafeBump restored HTTPX `0.28.1` and revalidated the baseline with six passing tests.
+- Learned that dependency metadata alone cannot prove runtime compatibility; next, add reporting and honesty guardrails, run all five evals, and capture the unedited Build the Agent evidence.
+
 2026-08-15
 - SB-01: Created the separate public SafeBump repository, copied BE-02 into `target/` as a disclosed fixture, and verified the Ubuntu 26.04/Python 3.14 baseline with six passing tests and one existing warning.
 - SB-02: Ran every planned tool manually; `pip check` was clean, while `pip-audit` found `PYSEC-2026-1845` in pytest 8.4.2 and listed the major release 9.0.3 as the fix.
