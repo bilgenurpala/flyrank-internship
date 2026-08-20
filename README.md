@@ -14,7 +14,8 @@ An evolving portfolio of backend engineering assignments completed during my par
 | [BE-02 - Database-Backed CRUD](backend-engineering/be-02) | Persistence and SQL | FastAPI, SQLite, Pytest | Full CRUD, restart persistence, database view |
 | [BE-03 - Auth: Login and Protect](backend-engineering/be-03) | Authentication and route security | Supabase Auth, JWT, HTTPBearer | Protected routes, 10 tests, Swagger locks |
 | [BE-04 - Containerized Stack](backend-engineering/be-04) | Architecture and infrastructure | PostgreSQL, Docker Compose, psycopg | Layered service and persistent named volume |
-| [SafeBump](https://github.com/bilgenurpala/safebump) | Guarded dependency-upgrade agent | Python, pip, Pytest, Git | Pre-build spec, five eval cases, explicit rollback and approval gates |
+| [AI Fluency](ai-fluency) | Prompting, workflow automation, agent design, and portfolio communication | Claude, ChatGPT, GitHub tools, Markdown | FL-01–FL-10 and PF-04 artifacts connected to the [live portfolio](https://bilgenurpala.netlify.app/) |
+| [SafeBump](https://github.com/bilgenurpala/safebump) | Guarded dependency-upgrade agent | Python, pip, Pytest, Git | Working decision loop, five executed evals, Markdown reports, rollback and approval evidence |
 
 ## Engineering Progression
 
@@ -57,7 +58,7 @@ Every project is self-contained and has its own README with architecture, setup 
 
 [SafeBump](https://github.com/bilgenurpala/safebump) is the internship capstone agent. It is designed to inspect pinned Python dependencies, attempt eligible upgrades one package at a time, verify them with the target project's tests and `pip check`, and keep or roll back each local change under explicit guardrails. The separate repository prevents the agent's future branch and rollback operations from moving this internship repository underneath its own source.
 
-The design specification and five measurable evaluation cases were published before implementation. SafeBump reuses a disclosed copy of BE-02 as its controlled target; it does not present that backend as new capstone work.
+The design specification and five measurable evaluation cases were published before implementation. The implemented agent passed all five cases: safe patch keep, test-driven rollback with a concrete error, major-version approval, rollback on a real `pip check` conflict despite green tests, and an unapproved push that produced no remote mutation. SafeBump reuses a disclosed copy of BE-02 as its controlled target; it does not present that backend as new capstone work.
 
 ## Program Themes
 
@@ -75,10 +76,10 @@ The design specification and five measurable evaluation cases were published bef
 | 2 | [BE-04 - Containerize Your Stack](backend-engineering/be-04) | Complete |
 | 3 | [BE-02 - Connect CRUD to the Database](backend-engineering/be-02) | Complete |
 | 4 | [BE-03 - Auth: Login and Protect](backend-engineering/be-03) | Complete |
-| 5 | Upcoming assignment | Planned |
-| 6 | Upcoming assignment | Planned |
-| 7 | Upcoming assignment | Planned |
-| 8 | Upcoming assignment | Planned |
+| 5 | Ship the Ugly One and PF-04 live portfolio | Complete |
+| 6 | Explain It Like You Built It | Planned |
+| 7 | Open It on Your Phone and Survive the Crit | Planned |
+| 8 | Make It Do Something | Planned |
 
 ## Running a Project
 

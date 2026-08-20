@@ -1,11 +1,17 @@
 # Dev Log
 
+2026-08-20
+- Completed SafeBump SB-09 through SB-11: per-run Markdown reports, enforced branch/remote/time/attempt guardrails, bounded coverage statements, and five executed Linux evaluations.
+- The first main-guard report falsely listed tests as verified even though pytest never ran; the first rollback reason also reduced a concrete `BaseTransport` exception to a generic error count.
+- Fixed both honesty defects, preserved the before/after raw records, and verified rollback after a test failure and after a real `pip check` conflict with green tests.
+- Next: finalize SB-12 documentation and use the SB-08 decision layer for Explain It Like You Built It.
+
 2026-08-15
-- Created the separate public SafeBump repository and copied BE-02 into `target/` as a disclosed, controlled dependency-upgrade fixture.
-- Verified the Ubuntu 26.04/Python 3.14 baseline: all six tests passed, `pip check` was clean, and the existing Starlette deprecation warning remained visible.
-- Ran the design tools manually; `pip-audit` found `PYSEC-2026-1845` in pytest 8.4.2, but the listed fix crosses into pytest 9 and therefore remains behind the major-upgrade approval gate.
-- Published the specification, five measurable pre-build eval cases, guardrails, platform trade-off, and an honest build log before writing agent code.
-- Tomorrow: implement the narrowest observe-and-upgrade loop, then test keep, rollback, and approval behavior against the pre-written evals.
+- SB-01: Created the separate public SafeBump repository, copied BE-02 into `target/` as a disclosed fixture, and verified the Ubuntu 26.04/Python 3.14 baseline with six passing tests and one existing warning.
+- SB-02: Ran every planned tool manually; `pip check` was clean, while `pip-audit` found `PYSEC-2026-1845` in pytest 8.4.2 and listed the major release 9.0.3 as the fix.
+- SB-03: Defined security-first prioritization, two mandatory keep gates, complete rollback, default-branch protection, time/attempt limits, remote-action approvals, and bounded-success reporting.
+- SB-04: Published five measurable eval cases before implementation, covering patch keep, test rollback, major approval, dependency conflict, and blocked push/PR behavior.
+- SB-05: Chose a scripted Python agent over n8n and a Claude Project, submitted Design Your Personal Agent, and closed issues #31–#35; next, build and test the narrowest end-to-end loop against the pre-written evals.
 
 2026-08-14
 - Audited the live Home, Work, About, and Contact routes and confirmed that BE-01 through BE-04 are visible on the Work page.
