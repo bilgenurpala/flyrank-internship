@@ -1,10 +1,16 @@
 # Dev Log
 
-2026-08-20
-- Completed SafeBump SB-09 through SB-12: shipped the reporting and guardrail layers, ran five Linux evaluations, and finalized a stranger-reproducible README with decision diagrams and honest limitations.
-- The first main-guard report falsely listed tests as verified even though pytest never ran; the first rollback reason also reduced a concrete `BaseTransport` exception to a generic error count.
-- Fixed both honesty defects, preserved the before/after raw records, and documented the SB-08 keep/rollback boundary in a plain-language explainer without presenting deterministic policy as model judgment.
+2026-08-18
+- Completed SB-12 by turning the SafeBump README into a stranger-reproducible guide with Linux setup, real report examples, Mermaid decision diagrams, guardrails, eval results, limitations, and MIT licensing.
+- Wrote Explain It Like You Built It around the SB-08 keep/rollback boundary and distinguished deterministic tool-driven decisions from open-ended model judgment.
+- The README audit exposed missing Git identity setup, branch-lifecycle guidance, and a clearly stated intended user; all three were added instead of assuming prior project context.
 - Next: run Open It on Your Phone and Survive the Crit while keeping the live SafeBump case marked in development until the planned 2026-08-21 site update.
+
+2026-08-17
+- Completed SB-09 through SB-11: generated per-run Markdown reports, enforced branch/remote/time/attempt guardrails, and executed all five Linux evaluations without mid-run hand editing.
+- The first main-guard report falsely listed tests as verified even though pytest never ran; the first rollback reason reduced the concrete `BaseTransport` exception to a generic error count.
+- Fixed both honesty defects, preserved the before/after raw records, and verified restoration after a pytest failure and after a real `pip check` conflict with six green tests.
+- Submitted Build the Agent with the public SafeBump repository, generated reports, build log, and unedited terminal evidence.
 
 2026-08-16
 - SB-06: Built the read-only observation slice, parsed `pip list --outdated` and `pip-audit` JSON, merged direct dependency evidence, and prioritized the vulnerable pytest major upgrade before minor updates.
