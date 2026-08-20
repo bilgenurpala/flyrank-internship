@@ -1,10 +1,10 @@
 # Dev Log
 
 2026-08-19
-- Audited the portfolio for FL-12 and FL-13, aligned the primary action around the verified Cal.com booking route, and increased navigation and supporting-link touch targets for mobile use.
-- Added a before/after mobile fix log that separates build and HTTP evidence from the still-required physical-phone checks instead of treating a responsive viewport as device proof.
-- The critique exposed stale documentation and an evidence-risk: SafeBump is intentionally held for the 21 August case-study update, but that delay must remain explicit to the reviewer.
-- Next: complete Home → Work → About → Contact and booking checks on the physical phone, submit both cards, then classify and address Checkpoint 1 feedback.
+- Completed the FL-12 physical-iPhone walkthrough across Home, Work, About, Contact, the updated ATS resume, and the real Cal.com scheduling screen.
+- Fixed undersized touch targets, a 2.7 MB portrait, two mobile evidence-image failures, inconsistent booking emphasis, and stale SafeBump placeholder copy; all corrections were redeployed and retested.
+- The first PetAdopt width adjustment still clipped the cover, so the decorative image was replaced with the real working interface instead of forcing a second cosmetic crop.
+- Next: submit FL-12 and Checkpoint 1 separately, then classify reviewer feedback into must-fix and nice-to-have before continuing the build plan.
 
 2026-08-18
 - Completed SB-12 by turning the SafeBump README into a stranger-reproducible guide with Linux setup, real report examples, Mermaid decision diagrams, guardrails, eval results, limitations, and MIT licensing.
