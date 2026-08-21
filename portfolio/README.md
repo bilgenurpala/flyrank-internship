@@ -43,4 +43,4 @@ This portfolio is a static Astro site deployed on Netlify. Astro was selected be
 
 ## Ownership Boundaries
 
-The site has no application database or authentication. Netlify Forms is the only managed backend feature; no custom server handles submissions. Google Analytics provides aggregate traffic measurement through property `G-976MQ2G2BX`. External profile, repository, and booking links leave the site. SafeBump's reported results are bounded to its committed Ubuntu 26.04/Python 3.14 evaluation evidence.
+The site has no application database or authentication. Netlify Forms is the only managed backend feature; no custom server handles submissions. Google Analytics provides aggregate traffic measurement through property `G-ZQB4H5SXP7`. External profile, repository, and booking links leave the site. SafeBump's reported results are bounded to its committed Ubuntu 26.04/Python 3.14 evaluation evidence.
