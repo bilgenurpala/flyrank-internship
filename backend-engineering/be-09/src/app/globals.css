@@ -32,7 +32,7 @@ h1 { margin: 4px 0 0; font-size: clamp(1.5rem, 3vw, 2.2rem); letter-spacing: -.0
 .panel label { display: grid; gap: 7px; margin-top: 14px; color: var(--muted); font-size: .82rem; font-weight: 700; }
 .panel input, .panel textarea, .panel select { width: 100%; border: 1px solid var(--line); border-radius: 9px; padding: 10px; background: #0a120f; color: var(--ink); resize: vertical; }
 .run-panel .button { width: 100%; margin-top: 14px; }
-.decision-node { position: relative; width: 235px; padding: 16px; border: 1px solid var(--line); border-radius: 14px; background: #12201a; box-shadow: 0 16px 40px rgba(0,0,0,.24); }
+.decision-node { position: relative; width: 267px; padding: 16px; border: 1px solid var(--line); border-radius: 14px; background: #12201a; box-shadow: 0 16px 40px rgba(0,0,0,.24); }
 .decision-node.selected { border-color: #74f2bb; }
 .decision-node strong { display: block; margin-top: 7px; font-size: 1rem; }
 .decision-node p { margin: 8px 0 0; color: var(--muted); font-size: .78rem; line-height: 1.45; }
