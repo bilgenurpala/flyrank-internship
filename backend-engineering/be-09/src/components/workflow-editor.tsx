@@ -24,6 +24,12 @@ import type { DecisionNodeData, WorkflowGraph } from "@/lib/workflow";
 import type { RunState } from "@/lib/run-store";
 
 const STORAGE_KEY = "be-09-decision-flow";
+const NODE_WIDTH = 267;
+const NODE_HEIGHT = 120;
+
+function sizeNodes(nodes: Node<DecisionNodeData>[]) {
+  return nodes.map((node) => ({ ...node, width: node.width ?? NODE_WIDTH, height: node.height ?? NODE_HEIGHT }));
+}
 
 function Editor() {
   const [nodes, setNodes, onNodesChange] = useNodesState<Node<DecisionNodeData>>(defaultWorkflow.nodes);
@@ -44,7 +50,7 @@ function Editor() {
       try {
         const graph = JSON.parse(saved) as WorkflowGraph;
         if (!Array.isArray(graph.nodes) || graph.nodes.length === 0 || !Array.isArray(graph.edges) || !graph.startNodeId) throw new Error("Invalid saved workflow");
-        setNodes(graph.nodes);
+        setNodes(sizeNodes(graph.nodes));
         setEdges(graph.edges.map((edge) => ({ ...edge, markerEnd: { type: MarkerType.ArrowClosed } })));
         setStartNodeId(graph.startNodeId);
       } catch {
@@ -87,7 +93,7 @@ function Editor() {
 
   function addNode() {
     const id = `node-${crypto.randomUUID().slice(0, 8)}`;
-    setNodes((current) => [...current, { id, type: "decision", position: { x: 160 + current.length * 36, y: 140 + current.length * 28 }, data: { label: `Decision ${current.length + 1}`, prompt: "Write a binary decision prompt." } }]);
+    setNodes((current) => [...current, { id, type: "decision", position: { x: 160 + current.length * 36, y: 140 + current.length * 28 }, width: NODE_WIDTH, height: NODE_HEIGHT, data: { label: `Decision ${current.length + 1}`, prompt: "Write a binary decision prompt." } }]);
     setSelectedNodeId(id);
   }
 
@@ -121,7 +127,7 @@ function Editor() {
     try {
       const graph = JSON.parse(await file.text()) as WorkflowGraph;
       if (!Array.isArray(graph.nodes) || !Array.isArray(graph.edges) || !graph.startNodeId) throw new Error("Invalid workflow JSON");
-      setNodes(graph.nodes);
+      setNodes(sizeNodes(graph.nodes));
       setEdges(graph.edges.map((edge) => ({ ...edge, markerEnd: { type: MarkerType.ArrowClosed } })));
       setStartNodeId(graph.startNodeId);
       setSelectedNodeId(graph.startNodeId);
