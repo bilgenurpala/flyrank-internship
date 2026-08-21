@@ -5,7 +5,7 @@
 | Requirement | Current evidence | Status |
 |---|---|---|
 | Final address over HTTPS | `https://bilgenurpala.netlify.app/` returns HTTP 200 over HTTPS and is suitable for the CV while the FlyRank subdomain remains unavailable. | Ready |
-| Free analytics installed and receiving data | Google Analytics property `G-976MQ2G2BX` is wired through the shared layout. | Installed; production traffic verification required |
+| Free analytics installed and receiving data | Google Analytics property `G-ZQB4H5SXP7` is wired through the shared layout. | Installed; production traffic verification required |
 | Page titles and descriptions | Home, Work, About, and Contact emit route-specific titles and descriptions. | Ready in source; production retest required |
 | Share preview | Open Graph and X card metadata are implemented with an absolute public image URL. | Ready in source; production unfurl evidence required |
 | Favicon | SVG, 32 px, and Apple touch icons are configured. | Ready |
