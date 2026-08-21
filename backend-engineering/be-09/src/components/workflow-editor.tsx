@@ -27,7 +27,7 @@ const STORAGE_KEY = "be-09-decision-flow";
 
 function Editor() {
   const [nodes, setNodes, onNodesChange] = useNodesState<Node<DecisionNodeData>>(defaultWorkflow.nodes);
-  const [edges, setEdges, onEdgesChange] = useEdgesState<Edge>(defaultWorkflow.edges);
+  const [edges, setEdges, onEdgesChange] = useEdgesState<Edge>(defaultWorkflow.edges.map((edge) => ({ ...edge, markerEnd: { type: MarkerType.ArrowClosed } })));
   const [startNodeId, setStartNodeId] = useState(defaultWorkflow.startNodeId);
   const [selectedNodeId, setSelectedNodeId] = useState<string | null>(defaultWorkflow.startNodeId);
   const [edgeDecision, setEdgeDecision] = useState<"YES" | "NO">("YES");
@@ -43,7 +43,7 @@ function Editor() {
     try {
       const graph = JSON.parse(saved) as WorkflowGraph;
       setNodes(graph.nodes);
-      setEdges(graph.edges);
+      setEdges(graph.edges.map((edge) => ({ ...edge, markerEnd: { type: MarkerType.ArrowClosed } })));
       setStartNodeId(graph.startNodeId);
     } catch {
       localStorage.removeItem(STORAGE_KEY);
@@ -63,20 +63,21 @@ function Editor() {
     return () => window.clearInterval(timer);
   }, [run]);
 
-  const displayNodes = nodes.map((node) => ({
-    ...node,
-    className: run?.activeNodeId === node.id ? "node-active" : run?.order.includes(node.id) ? "node-complete" : ""
-  }));
-
-  const displayEdges = edges.map((edge) => ({
-    ...edge,
-    markerEnd: { type: MarkerType.ArrowClosed },
-    className: run?.logs.some((log) => log.nodeId === edge.source && log.nextNodeId === edge.target) ? "edge-active" : ""
-  }));
+  useEffect(() => {
+    if (!run) return;
+    setNodes((current) => current.map((node) => ({
+      ...node,
+      className: run.activeNodeId === node.id ? "node-active" : run.order.includes(node.id) ? "node-complete" : ""
+    })));
+    setEdges((current) => current.map((edge) => ({
+      ...edge,
+      className: run.logs.some((log) => log.nodeId === edge.source && log.nextNodeId === edge.target) ? "edge-active" : ""
+    })));
+  }, [run, setEdges, setNodes]);
 
   const onConnect = useCallback((connection: Connection) => {
     const decision = connection.sourceHandle === "no" ? "NO" : edgeDecision;
-    setEdges((current) => addEdge({ ...connection, id: `${connection.source}-${decision.toLowerCase()}-${connection.target}`, label: decision, data: { decision }, animated: decision === "YES" }, current));
+    setEdges((current) => addEdge({ ...connection, id: `${connection.source}-${decision.toLowerCase()}-${connection.target}`, label: decision, data: { decision }, animated: decision === "YES", markerEnd: { type: MarkerType.ArrowClosed } }, current));
   }, [edgeDecision]);
 
   function addNode() {
@@ -116,7 +117,7 @@ function Editor() {
       const graph = JSON.parse(await file.text()) as WorkflowGraph;
       if (!Array.isArray(graph.nodes) || !Array.isArray(graph.edges) || !graph.startNodeId) throw new Error("Invalid workflow JSON");
       setNodes(graph.nodes);
-      setEdges(graph.edges);
+      setEdges(graph.edges.map((edge) => ({ ...edge, markerEnd: { type: MarkerType.ArrowClosed } })));
       setStartNodeId(graph.startNodeId);
       setSelectedNodeId(graph.startNodeId);
       setError(null);
@@ -136,14 +137,14 @@ function Editor() {
           <Button variant="secondary" size="sm" onClick={exportGraph}><Download size={16} /> Export</Button>
           <Button variant="secondary" size="sm" onClick={() => fileInput.current?.click()}><Upload size={16} /> Import</Button>
           <input ref={fileInput} hidden type="file" accept="application/json" onChange={(event) => event.target.files?.[0] && importGraph(event.target.files[0])} />
-          <Button variant="secondary" size="sm" onClick={() => { setNodes(defaultWorkflow.nodes); setEdges(defaultWorkflow.edges); setStartNodeId(defaultWorkflow.startNodeId); }}><RotateCcw size={16} /> Reset</Button>
+          <Button variant="secondary" size="sm" onClick={() => { setNodes(defaultWorkflow.nodes); setEdges(defaultWorkflow.edges.map((edge) => ({ ...edge, markerEnd: { type: MarkerType.ArrowClosed } }))); setStartNodeId(defaultWorkflow.startNodeId); }}><RotateCcw size={16} /> Reset</Button>
         </div>
       </header>
       <section className="workspace">
         <div className="canvas-panel">
           <ReactFlow
-            nodes={displayNodes}
-            edges={displayEdges}
+            nodes={nodes}
+            edges={edges}
             nodeTypes={nodeTypes}
             onNodesChange={onNodesChange}
             onEdgesChange={onEdgesChange}
