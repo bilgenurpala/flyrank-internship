@@ -7,7 +7,6 @@ import {
   MarkerType,
   MiniMap,
   ReactFlow,
-  ReactFlowProvider,
   addEdge,
   useEdgesState,
   useNodesState,
@@ -197,5 +196,5 @@ function Editor() {
 }
 
 export function WorkflowEditor() {
-  return <ReactFlowProvider><Editor /></ReactFlowProvider>;
+  return <Editor />;
 }
