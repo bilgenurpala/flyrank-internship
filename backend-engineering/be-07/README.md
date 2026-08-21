@@ -32,7 +32,7 @@ curl -X POST http://127.0.0.1:8000/classify \
   "category": "support",
   "confidence": 0.98,
   "summary": "Customer cannot access their account",
-  "model": "gemini-2.5-flash-lite",
+  "model": "gemini-3.5-flash-lite",
   "attempts": 1
 }
 ```
