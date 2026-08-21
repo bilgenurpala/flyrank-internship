@@ -34,25 +34,30 @@ function Editor() {
   const [input, setInput] = useState("My production account is locked and customers cannot log in.");
   const [run, setRun] = useState<RunState | null>(null);
   const [error, setError] = useState<string | null>(null);
+  const [storageReady, setStorageReady] = useState(false);
   const fileInput = useRef<HTMLInputElement>(null);
   const nodeTypes = useMemo(() => ({ decision: DecisionNode }), []);
 
   useEffect(() => {
     const saved = localStorage.getItem(STORAGE_KEY);
-    if (!saved) return;
-    try {
-      const graph = JSON.parse(saved) as WorkflowGraph;
-      setNodes(graph.nodes);
-      setEdges(graph.edges.map((edge) => ({ ...edge, markerEnd: { type: MarkerType.ArrowClosed } })));
-      setStartNodeId(graph.startNodeId);
-    } catch {
-      localStorage.removeItem(STORAGE_KEY);
+    if (saved) {
+      try {
+        const graph = JSON.parse(saved) as WorkflowGraph;
+        if (!Array.isArray(graph.nodes) || graph.nodes.length === 0 || !Array.isArray(graph.edges) || !graph.startNodeId) throw new Error("Invalid saved workflow");
+        setNodes(graph.nodes);
+        setEdges(graph.edges.map((edge) => ({ ...edge, markerEnd: { type: MarkerType.ArrowClosed } })));
+        setStartNodeId(graph.startNodeId);
+      } catch {
+        localStorage.removeItem(STORAGE_KEY);
+      }
     }
+    setStorageReady(true);
   }, []);
 
   useEffect(() => {
+    if (!storageReady) return;
     localStorage.setItem(STORAGE_KEY, JSON.stringify({ nodes, edges, startNodeId }));
-  }, [nodes, edges, startNodeId]);
+  }, [nodes, edges, startNodeId, storageReady]);
 
   useEffect(() => {
     if (!run || run.status === "done" || run.status === "failed") return;
@@ -137,7 +142,7 @@ function Editor() {
           <Button variant="secondary" size="sm" onClick={exportGraph}><Download size={16} /> Export</Button>
           <Button variant="secondary" size="sm" onClick={() => fileInput.current?.click()}><Upload size={16} /> Import</Button>
           <input ref={fileInput} hidden type="file" accept="application/json" onChange={(event) => event.target.files?.[0] && importGraph(event.target.files[0])} />
-          <Button variant="secondary" size="sm" onClick={() => { setNodes(defaultWorkflow.nodes); setEdges(defaultWorkflow.edges.map((edge) => ({ ...edge, markerEnd: { type: MarkerType.ArrowClosed } }))); setStartNodeId(defaultWorkflow.startNodeId); }}><RotateCcw size={16} /> Reset</Button>
+          <Button variant="secondary" size="sm" onClick={() => { localStorage.removeItem(STORAGE_KEY); setNodes(defaultWorkflow.nodes); setEdges(defaultWorkflow.edges.map((edge) => ({ ...edge, markerEnd: { type: MarkerType.ArrowClosed } }))); setStartNodeId(defaultWorkflow.startNodeId); setSelectedNodeId(defaultWorkflow.startNodeId); }}><RotateCcw size={16} /> Reset</Button>
         </div>
       </header>
       <section className="workspace">
