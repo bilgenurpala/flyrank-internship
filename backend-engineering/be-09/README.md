@@ -1,6 +1,6 @@
 # BE-09: Build an AI Decision Flow with React Flow + Inngest
 
-This project is a visual editor and durable executor for binary AI decision workflows. Each React Flow node contains an editable decision prompt. During a run, the graph is traversed through Inngest, each visited node becomes a retriable `step.run()`, and the OpenAI Responses API returns a schema-constrained `YES` or `NO` decision. The selected edge determines the next node.
+This project is a visual editor and durable executor for binary AI decision workflows. Each React Flow node contains an editable decision prompt. During a run, the graph is traversed through Inngest, each visited node becomes a retriable `step.run()`, and an OpenAI-compatible Chat Completions endpoint returns a schema-constrained `YES` or `NO` decision. The selected edge determines the next node.
 
 ## Delivered requirements
 
@@ -10,7 +10,7 @@ This project is a visual editor and durable executor for binary AI decision work
 - Local graph persistence through `localStorage`
 - JSON export and import
 - Inngest event trigger and one durable step per visited node
-- Strict OpenAI Structured Output restricted to `YES | NO`
+- Strict structured output through the OpenAI SDK, restricted to `YES | NO`
 - Dynamic graph traversal and execution-order tracking
 - Active-node and traversed-edge visualization
 - Execution log panel with node, decision, and next-node data
@@ -27,7 +27,7 @@ decision-flow/run.requested
       |
 Inngest execute-ai-decision-flow
       |
-step.run(node-id) -> OpenAI YES/NO -> matching edge -> next node
+step.run(node-id) -> model YES/NO -> matching edge -> next node
       |
 GET /api/runs/:runId -> visual state and execution logs
 ```
@@ -36,14 +36,14 @@ The in-memory run store exists only to reflect the local Inngest Dev Server run 
 
 ## Setup
 
-Requirements: Node.js 20.9 or newer and an OpenAI API key.
+Requirements: Node.js 20.9 or newer and an API key for an OpenAI-compatible provider.
 
 ```bash
 cp .env.example .env.local
 npm install
 ```
 
-Set `OPENAI_API_KEY` in `.env.local`. Keep `DECISION_MODE=openai` for a real AI run.
+The example configuration uses a Gemini API key with Google's OpenAI-compatible base URL and `gemini-3.5-flash-lite`. Set the Gemini key as `OPENAI_API_KEY` in `.env.local`. Keep `DECISION_MODE=openai` for a real AI run. To use OpenAI directly, remove `OPENAI_BASE_URL` and select an OpenAI model.
 
 Start the frontend:
 
