@@ -17,7 +17,7 @@ This portfolio is a static Astro site deployed on Netlify. Astro was selected be
 
 ## Shared Structure
 
-- `src/layouts/BaseLayout.astro` owns the common document structure, metadata, fonts, header, footer, and the small reveal-on-scroll script used across every page.
+- `src/layouts/BaseLayout.astro` owns the common document structure, metadata, fonts, header, footer, Google Analytics tag, and the small reveal-on-scroll script used across every page.
 - `src/components/Header.astro` defines the Home, Work, About, and Contact navigation and marks the current page for screen readers and visual styling.
 - `src/components/Footer.astro` keeps the positioning statement and verified external links consistent across the site.
 - `src/components/AnimatedPortrait.astro` combines the real portrait with lightweight CSS-driven motion. It has no canvas, animation library, or generated video.
@@ -43,4 +43,4 @@ This portfolio is a static Astro site deployed on Netlify. Astro was selected be
 
 ## Ownership Boundaries
 
-The site has no application database or authentication. Netlify Forms is the only managed backend feature; no custom server handles submissions. Analytics is not installed yet. External profile, repository, and booking links leave the site. SafeBump's reported results are bounded to its committed Ubuntu 26.04/Python 3.14 evaluation evidence.
+The site has no application database or authentication. Netlify Forms is the only managed backend feature; no custom server handles submissions. Google Analytics provides aggregate traffic measurement through property `G-976MQ2G2BX`. External profile, repository, and booking links leave the site. SafeBump's reported results are bounded to its committed Ubuntu 26.04/Python 3.14 evaluation evidence.
