@@ -16,14 +16,16 @@ async function decide(prompt: string, input: string): Promise<Decision> {
     return input.toLowerCase().includes("yes") ? "YES" : "NO";
   }
   if (!process.env.OPENAI_API_KEY) throw new Error("OPENAI_API_KEY is required when DECISION_MODE=openai");
-  const client = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
-  const response = await client.responses.create({
-    model: process.env.OPENAI_MODEL ?? "gpt-5-mini",
-    instructions: "Evaluate the decision prompt against the user input. Return one decision. Do not add explanation.",
-    input: `Decision prompt: ${prompt}\nUser input: ${input}`,
-    text: {
-      format: {
-        type: "json_schema",
+  const client = new OpenAI({ apiKey: process.env.OPENAI_API_KEY, baseURL: process.env.OPENAI_BASE_URL });
+  const response = await client.chat.completions.create({
+    model: process.env.OPENAI_MODEL ?? "gemini-3.5-flash-lite",
+    messages: [
+      { role: "system", content: "Evaluate the decision prompt against the user input. Return one decision. Do not add explanation." },
+      { role: "user", content: `Decision prompt: ${prompt}\nUser input: ${input}` }
+    ],
+    response_format: {
+      type: "json_schema",
+      json_schema: {
         name: "binary_decision",
         strict: true,
         schema: {
@@ -35,7 +37,9 @@ async function decide(prompt: string, input: string): Promise<Decision> {
       }
     }
   });
-  const parsed = JSON.parse(response.output_text) as { decision?: unknown };
+  const content = response.choices[0]?.message.content;
+  if (!content) throw new Error("Model returned an empty decision");
+  const parsed = JSON.parse(content) as { decision?: unknown };
   return normalizeDecision(parsed.decision);
 }
 
