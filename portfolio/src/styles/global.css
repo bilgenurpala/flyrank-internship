@@ -702,6 +702,30 @@ h3 {
   line-height: 1.5;
 }
 
+.evidence-boundary {
+  border-top: 1px solid var(--rule);
+}
+
+.evidence-boundary p {
+  display: grid;
+  grid-template-columns: minmax(150px, 0.55fr) minmax(0, 2.45fr);
+  gap: 24px;
+  margin: 0;
+  padding: 20px 30px;
+  border-inline: 1px solid var(--rule);
+}
+
+.evidence-boundary strong {
+  color: var(--teal-dark);
+  font-family: var(--font-head);
+}
+
+.evidence-boundary span {
+  color: var(--muted);
+  font-size: 0.9rem;
+  line-height: 1.5;
+}
+
 .section-heading {
   display: flex;
   align-items: end;
@@ -1382,6 +1406,11 @@ h3 {
   .case-gallery,
   .case-gallery-two {
     grid-template-columns: 1fr;
+  }
+
+  .evidence-boundary p {
+    grid-template-columns: 1fr;
+    gap: 4px;
   }
 
   .case-gallery .evidence-tall {

@@ -36,6 +36,9 @@ import AnimatedPortrait from "../components/AnimatedPortrait.astro";
       <p><strong>8/10 development eval</strong><span>Local RAG result, reported with a separate 7/10 frozen blind eval</span></p>
       <p><strong>4 backend builds</strong><span>HTTP contracts, persistence, authentication, and containers</span></p>
     </div>
+    <div class="shell evidence-boundary">
+      <p><strong>Evidence boundary</strong><span>These results cover functional checks and controlled failure cases. They do not establish sustained-load behavior, multi-process concurrency safety, or production observability through structured logs and traces.</span></p>
+    </div>
   </section>
 
   <section id="selected-work" class="shell section-space" data-reveal>
@@ -54,6 +57,7 @@ import AnimatedPortrait from "../components/AnimatedPortrait.astro";
         </div>
         <h2>SafeBump</h2>
         <p>A guarded Python agent that upgrades one pinned dependency on an isolated branch, runs pytest and pip check, then keeps, rolls back, or asks for approval from explicit evidence.</p>
+        <p>Its five evaluations include controlled rollback and approval failures, but not load, concurrent workers, or production tracing.</p>
         <a class="inline-link" href="/work#safebump">See the tested decision loop <span aria-hidden="true">→</span></a>
       </div>
       <div class="decision-loop" aria-label="SafeBump tested decision loop">
