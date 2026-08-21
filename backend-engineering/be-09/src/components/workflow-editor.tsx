@@ -9,13 +9,11 @@ import {
   ReactFlow,
   ReactFlowProvider,
   addEdge,
-  applyEdgeChanges,
-  applyNodeChanges,
+  useEdgesState,
+  useNodesState,
   type Connection,
   type Edge,
-  type EdgeChange,
-  type Node,
-  type NodeChange
+  type Node
 } from "@xyflow/react";
 import "@xyflow/react/dist/style.css";
 import { Download, Play, Plus, RotateCcw, Upload } from "lucide-react";
@@ -28,8 +26,8 @@ import type { RunState } from "@/lib/run-store";
 const STORAGE_KEY = "be-09-decision-flow";
 
 function Editor() {
-  const [nodes, setNodes] = useState<Node<DecisionNodeData>[]>(defaultWorkflow.nodes);
-  const [edges, setEdges] = useState<Edge[]>(defaultWorkflow.edges);
+  const [nodes, setNodes, onNodesChange] = useNodesState<Node<DecisionNodeData>>(defaultWorkflow.nodes);
+  const [edges, setEdges, onEdgesChange] = useEdgesState<Edge>(defaultWorkflow.edges);
   const [startNodeId, setStartNodeId] = useState(defaultWorkflow.startNodeId);
   const [selectedNodeId, setSelectedNodeId] = useState<string | null>(defaultWorkflow.startNodeId);
   const [edgeDecision, setEdgeDecision] = useState<"YES" | "NO">("YES");
@@ -147,8 +145,8 @@ function Editor() {
             nodes={displayNodes}
             edges={displayEdges}
             nodeTypes={nodeTypes}
-            onNodesChange={(changes: NodeChange<Node<DecisionNodeData>>[]) => setNodes((current) => applyNodeChanges(changes, current))}
-            onEdgesChange={(changes: EdgeChange[]) => setEdges((current) => applyEdgeChanges(changes, current))}
+            onNodesChange={onNodesChange}
+            onEdgesChange={onEdgesChange}
             onConnect={onConnect}
             onNodeClick={(_event, node) => setSelectedNodeId(node.id)}
             fitView
