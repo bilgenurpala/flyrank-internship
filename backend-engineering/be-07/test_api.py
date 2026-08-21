@@ -49,7 +49,7 @@ def test_classification_returns_valid_schema(client):
         "category": "support",
         "confidence": 0.95,
         "summary": "Customer needs help",
-        "model": "gemini-2.5-flash-lite",
+        "model": "gemini-3.5-flash-lite",
         "attempts": 1,
     }
 
