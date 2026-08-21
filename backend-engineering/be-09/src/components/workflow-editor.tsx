@@ -63,16 +63,16 @@ function Editor() {
     return () => window.clearInterval(timer);
   }, [run]);
 
-  const displayNodes = useMemo(() => nodes.map((node) => ({
+  const displayNodes = nodes.map((node) => ({
     ...node,
     className: run?.activeNodeId === node.id ? "node-active" : run?.order.includes(node.id) ? "node-complete" : ""
-  })), [nodes, run]);
+  }));
 
-  const displayEdges = useMemo(() => edges.map((edge) => ({
+  const displayEdges = edges.map((edge) => ({
     ...edge,
     markerEnd: { type: MarkerType.ArrowClosed },
     className: run?.logs.some((log) => log.nodeId === edge.source && log.nextNodeId === edge.target) ? "edge-active" : ""
-  })), [edges, run]);
+  }));
 
   const onConnect = useCallback((connection: Connection) => {
     const decision = connection.sourceHandle === "no" ? "NO" : edgeDecision;
