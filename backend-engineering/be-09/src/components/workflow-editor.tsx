@@ -39,6 +39,7 @@ function Editor() {
   const [input, setInput] = useState("My production account is locked and customers cannot log in.");
   const [run, setRun] = useState<RunState | null>(null);
   const [error, setError] = useState<string | null>(null);
+  const [submitting, setSubmitting] = useState(false);
   const [storageReady, setStorageReady] = useState(false);
   const fileInput = useRef<HTMLInputElement>(null);
   const nodeTypes = useMemo(() => ({ decision: DecisionNode }), []);
@@ -104,13 +105,20 @@ function Editor() {
   async function execute() {
     setError(null);
     setRun(null);
-    const response = await fetch("/api/runs", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ input, graph: { nodes, edges, startNodeId } }) });
-    const body = await response.json();
-    if (!response.ok) {
-      setError(body.error ?? "Workflow could not start");
-      return;
+    setSubmitting(true);
+    try {
+      const response = await fetch("/api/runs", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ input, graph: { nodes, edges, startNodeId } }) });
+      const body = await response.json();
+      if (!response.ok) {
+        setError(body.error ?? "Workflow could not start");
+        return;
+      }
+      setRun({ id: body.runId, status: "queued", activeNodeId: null, order: [], logs: [], error: null });
+    } catch {
+      setError("Workflow request failed. Check the Next.js and Inngest dev servers.");
+    } finally {
+      setSubmitting(false);
     }
-    setRun({ id: body.runId, status: "queued", activeNodeId: null, order: [], logs: [], error: null });
   }
 
   function exportGraph() {
@@ -180,7 +188,7 @@ function Editor() {
           <section className="panel run-panel">
             <span className="panel-label">Execution</span>
             <label>User input<textarea rows={4} value={input} onChange={(event) => setInput(event.target.value)} /></label>
-            <Button onClick={execute} disabled={!input.trim() || run?.status === "queued" || run?.status === "running"}><Play size={16} /> Run with Inngest</Button>
+            <Button type="button" onClick={execute} disabled={!input.trim() || submitting || run?.status === "queued" || run?.status === "running"}><Play size={16} /> {submitting ? "Starting workflow..." : "Run with Inngest"}</Button>
             {error && <p className="error">{error}</p>}
             {run && <div className="run-summary"><span className={`status status-${run.status}`}>{run.status}</span><code>{run.id}</code>{run.error && <p className="error">{run.error}</p>}</div>}
           </section>
